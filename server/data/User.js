@@ -52,6 +52,28 @@ userSchema.method({
 let User = mongoose.model('User', userSchema);
 
 module.exports = {
-    User: User,
-    userSchema: userSchema
+    User,
+    userSchema,
+    seedAdminUser: () => {
+        User.find({})
+            .then((users) => {
+                if(users.length > 0) {
+                    return;
+                }
+
+                let salt = encryption.generateSalt();
+                let hashedPass = encryption.generateHashedPassword(salt, '123456abc');
+
+                User.create({
+                    username: 'Admin Name',
+                    firstName: 'AdminFirstName',
+                    lastName: 'AdminLastName',
+                    email: 'admin1@gmail.com',
+                    salt: salt,
+                    hashedPass: hashedPass,
+                    roles: ['Admin'],
+                    profilePictureUrl: ''
+                });
+            })
+    }
 };
