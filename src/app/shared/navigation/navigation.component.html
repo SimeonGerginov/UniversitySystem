@@ -6,11 +6,21 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" >Login</a>
+        <li class="nav-item" *ngIf="!isUserLogged">
+          <a class="nav-link" [routerLink]="[ '/register'] ">
+            <i class="fa fa-user-plus" aria-hidden="true"></i>
+            <span class="nav-link-text ">
+               Register
+            </span>
+          </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" >Register</a>
+        <li class="nav-item" *ngIf="!isUserLogged">
+          <a class="nav-link" [routerLink]="[ '/login'] ">
+            <i class="fa fa-user-plus" aria-hidden="true"></i>
+            <span class="nav-link-text ">
+               Login
+            </span>
+          </a>
         </li>
       </ul>
     </div>

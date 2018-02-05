@@ -68,11 +68,6 @@ const usersController = (utils) => {
           .catch(() => {
             res.status(400).send(({ success: false, message: 'Invalid Credentials' }))
           });
-    },
-
-    logout: (req, res) => {
-      req.logout();
-      return res.status(200).json({ infoMsg: 'You are logged out.' });
     }
   }
 };

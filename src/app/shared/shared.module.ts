@@ -6,13 +6,15 @@ import { CookieService } from 'ngx-cookie-service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms/';
 
 import { NavigationComponent } from './navigation/navigation.component';
+import { UsersService } from './services/users.service';
+import { UserStorageService } from './services/user-storage.service';
+import { HttpRequesterService } from './services/http-requester.service';
 
 @NgModule({
   imports: [
     RouterModule,
     CommonModule,
     NgbModule,
-    CookieService,
     ReactiveFormsModule
   ],
   declarations: [NavigationComponent],
@@ -20,9 +22,14 @@ import { NavigationComponent } from './navigation/navigation.component';
     NavigationComponent,
     NgbModule,
     CommonModule,
-    CookieService,
     FormsModule,
     ReactiveFormsModule
+  ],
+  providers: [
+    CookieService,
+    UsersService,
+    UserStorageService,
+    HttpRequesterService
   ]
 })
 export class SharedModule { }
