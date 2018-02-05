@@ -1,10 +1,19 @@
 const passport = require('passport');
-const LocalPassport = require('passport-local');
+const JwtStrategy = require('passport-jwt').Strategy;
+const ExtractJwt = require('passport-jwt').ExtractJwt;
+
 const User = require('mongoose').model('User');
 
-module.exports = () => {
-    passport.use(new LocalPassport((username, password, done) => {
-        User.findOne({ username: username })
+module.exports = (app) => {
+    app.use(passport.initialize());
+    app.use(passport.session());
+
+    const options = {};
+    options.jwtFromRequest = ExtractJwt.fromHeader('token');
+    opts.secretOrKey = app.get('superSecret');
+
+    passport.use(new JwtStrategy(options, (jwt_payload, done) => {
+        User.findById(jwt_payload._id)
             .then((user) => {
                 if(!user) {
                     return done(null, false);
@@ -16,12 +25,17 @@ module.exports = () => {
 
                 return done(null, user);
             })
+            .catch((err) => {
+              done(err, false);
+            });
     }));
 
     passport.serializeUser((user, done) => {
         if(user) {
             return done(null, user._id);
         }
+
+        return done(null, null);
     });
 
     passport.deserializeUser((id, done) => {
@@ -32,6 +46,9 @@ module.exports = () => {
                 }
 
                 return done(null, user);
-            });
+            })
+            .catch((err) => {
+               done(err, false);
+            })
     });
 };

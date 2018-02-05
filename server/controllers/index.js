@@ -1,5 +1,6 @@
-const users = require('./users.controller');
+const app = require('express')();
+const utils = require('./server/utils/generateToken')(app);
 
 module.exports = {
-    users
+    users: require('./users.controller')(utils)
 };
