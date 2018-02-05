@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CookieService } from 'ngx-cookie-service';
 
 import { NavigationComponent } from './navigation/navigation.component';
 
@@ -9,13 +10,15 @@ import { NavigationComponent } from './navigation/navigation.component';
   imports: [
     RouterModule,
     CommonModule,
-    NgbModule
+    NgbModule,
+    CookieService
   ],
   declarations: [NavigationComponent],
   exports: [
     NavigationComponent,
     NgbModule,
-    CommonModule
+    CommonModule,
+    CookieService
   ]
 })
 export class SharedModule { }
