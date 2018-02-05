@@ -3,8 +3,7 @@ export class User {
   firstName: string;
   lastName: string;
   email: string;
-  salt: string;
-  hashedPass: string;
+  password: string;
   roles: [string];
   profilePictureUrl: string;
 }
