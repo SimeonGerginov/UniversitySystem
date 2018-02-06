@@ -1,6 +1,8 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
-import { UserStorageService } from '../services/user-storage.service';
 import { Router } from '@angular/router';
+
+import { UserStorageService } from '../services/user-storage.service';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
   selector: 'app-navigation',
@@ -13,6 +15,7 @@ export class NavigationComponent implements OnInit, DoCheck {
   profilePictureUrl: string;
 
   constructor(private userStorageService: UserStorageService,
+              private notificationService: NotificationService,
               private router: Router) { }
 
   ngOnInit() {
@@ -32,6 +35,7 @@ export class NavigationComponent implements OnInit, DoCheck {
 
   logoutUser() {
     this.userStorageService.logoutUser();
+    this.notificationService.showSuccess('You are now logged out!');
     this.router.navigateByUrl('/home');
   }
 

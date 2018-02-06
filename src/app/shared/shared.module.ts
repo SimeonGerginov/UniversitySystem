@@ -10,6 +10,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { UsersService } from './services/users.service';
 import { UserStorageService } from './services/user-storage.service';
 import { HttpRequesterService } from './services/http-requester.service';
+import { NotificationService } from './services/notification.service';
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import { HttpRequesterService } from './services/http-requester.service';
     CookieService,
     UsersService,
     UserStorageService,
-    HttpRequesterService
+    HttpRequesterService,
+    NotificationService
   ]
 })
 export class SharedModule { }
