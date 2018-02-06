@@ -98,7 +98,7 @@ const usersController = (utils) => {
                 return User.update(foundUser);
               })
               .then(() => {
-                return res.status(204).send({ success: true, updateUser: userToUpdate });
+                return res.status(204).send({ success: true, updatedUser: userToUpdate });
               })
               .catch((err) => {
                 return res.status(400).send({ success: false, err });
