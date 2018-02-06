@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CookieService } from 'ngx-cookie-service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms/';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { NavigationComponent } from './navigation/navigation.component';
 import { UsersService } from './services/users.service';
@@ -15,12 +16,14 @@ import { HttpRequesterService } from './services/http-requester.service';
     RouterModule,
     CommonModule,
     NgbModule,
+    AngularFontAwesomeModule,
     ReactiveFormsModule
   ],
   declarations: [NavigationComponent],
   exports: [
     NavigationComponent,
     NgbModule,
+    AngularFontAwesomeModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule
