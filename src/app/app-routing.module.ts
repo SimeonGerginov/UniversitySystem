@@ -3,6 +3,11 @@ import { NgModule } from '@angular/core';
 
 const routes: Routes = [
   {
+    path: 'auth',
+    loadChildren: './authentication/authentication.module#AuthenticationModule'
+  },
+
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
