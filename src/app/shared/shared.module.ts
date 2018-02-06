@@ -12,6 +12,8 @@ import { UsersService } from './services/users.service';
 import { UserStorageService } from './services/user-storage.service';
 import { HttpRequesterService } from './services/http-requester.service';
 import { NotificationService } from './services/notification.service';
+import { AuthGuardService } from './guards/auth-guard.service';
+import { LogoutGuardService } from './guards/logout-guard.service';
 
 @NgModule({
   imports: [
@@ -37,7 +39,9 @@ import { NotificationService } from './services/notification.service';
     UsersService,
     UserStorageService,
     HttpRequesterService,
-    NotificationService
+    NotificationService,
+    AuthGuardService,
+    LogoutGuardService
   ]
 })
 export class SharedModule { }
