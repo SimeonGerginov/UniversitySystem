@@ -60,7 +60,7 @@ const usersController = (utils) => {
               return res.send({
                 success: true,
                 message: `User ${user.username} is now logged in!`,
-                token,
+                token: token,
                 username: user.username,
                 profilePicture: user.profilePictureUrl
               });

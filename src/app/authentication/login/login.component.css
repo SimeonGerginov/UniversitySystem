@@ -1,0 +1,15 @@
+main {
+  margin-top: 7%;
+}
+
+.input-group span {
+  padding-right: 10px;
+}
+
+.error {
+  color: red;
+}
+
+.col-md-10 span {
+  padding-left: 13px;
+}
