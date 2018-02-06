@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -14,6 +15,7 @@ import { NotificationService } from './services/notification.service';
 
 @NgModule({
   imports: [
+    HttpModule,
     RouterModule,
     CommonModule,
     NgbModule,
@@ -22,6 +24,7 @@ import { NotificationService } from './services/notification.service';
   ],
   declarations: [NavigationComponent],
   exports: [
+    HttpModule,
     NavigationComponent,
     NgbModule,
     AngularFontAwesomeModule,
