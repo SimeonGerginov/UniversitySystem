@@ -4,13 +4,13 @@ const ExtractJwt = require('passport-jwt').ExtractJwt;
 
 const User = require('mongoose').model('User');
 
-module.exports = (app) => {
+const configAuth = (app) => {
     app.use(passport.initialize());
     app.use(passport.session());
 
     const options = {};
     options.jwtFromRequest = ExtractJwt.fromHeader('token');
-    opts.secretOrKey = app.get('superSecret');
+    options.secretOrKey = app.get('superSecret');
 
     passport.use(new JwtStrategy(options, (jwt_payload, done) => {
         User.findById(jwt_payload._id)
@@ -52,3 +52,5 @@ module.exports = (app) => {
             })
     });
 };
+
+module.exports = configAuth;

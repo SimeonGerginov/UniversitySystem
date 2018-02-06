@@ -22,7 +22,7 @@ const usersController = (utils) => {
           salt: salt,
           hashedPass: hashedPass,
           roles: [DEFAULT_ROLE],
-          profilePictureUrl = DEFAULT_PROFILE_PICTURE
+          profilePictureUrl: DEFAULT_PROFILE_PICTURE
        };
 
        User.create(reqUser)
@@ -38,9 +38,10 @@ const usersController = (utils) => {
     },
 
     login: (req, res) => {
-      let reqUser= req.body;
+      let reqUser = req.body;
+      console.log(reqUser);
 
-      User.findOne({ username: reqUser.username })
+      User.findOne({ email: reqUser.email })
           .then((user) => {
               if(!user) {
                   return res.status(400).json({ errorMsg: 'User was not found.' });

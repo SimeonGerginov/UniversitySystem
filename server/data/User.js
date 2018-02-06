@@ -5,31 +5,27 @@ const globalConstants = require('../utils/globalConstants');
 const Schema = mongoose.Schema;
 
 let userSchema = new Schema({
-    username: { 
-        type: String, 
-        required: () => {
-            return this.username.match(globalConstants.USERNAME_MATCH_PATTERN);
-        }, 
-        unique: true 
+    username: {
+        type: String,
+        required: true,
+        validate: globalConstants.USERNAME_MATCH_PATTERN,
+        unique: true
     },
-    firstName: { 
-        type: String, 
-        required: () => {
-            return this.firstName.match(globalConstants.FIRSTNAME_MATCH_PATTERN);
-        }
+    firstName: {
+        type: String,
+        required: true,
+        validate: globalConstants.FIRSTNAME_MATCH_PATTERN
     },
-    lastName: { 
-        type: String, 
-        required: () => {
-            return this.lastName.match(globalConstants.LASTNAME_MATCH_PATTERN);
-        } 
+    lastName: {
+        type: String,
+        required: true,
+        validate: globalConstants.LASTNAME_MATCH_PATTERN
     },
-    email: { 
-        type: String, 
-        required: () => {
-            return this.email.match(globalConstants.EMAIL_MATCH_PATTERN);
-        }, 
-        unique: true 
+    email: {
+        type: String,
+        required: true,
+        validate: globalConstants.EMAIL_MATCH_PATTERN,
+        unique: true
     },
     salt: {
         type: String,
