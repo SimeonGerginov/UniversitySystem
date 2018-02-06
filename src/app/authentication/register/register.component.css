@@ -2,22 +2,14 @@ main {
   margin-top: 7%;
 }
 
-input.ng-invalid {
-  border-color: red;
+.input-group span {
+  padding-right: 10px;
 }
 
-input.ng-valid {
-  border-color: green;
-}
-
-.login-button {
-  margin-top: 5px;
-}
-
-.validation-feedback {
+.error {
   color: red;
 }
 
-.left {
-  float: left;
+.col-md-10 span {
+  padding-left: 13px;
 }

@@ -3,68 +3,126 @@
         <div class="row">
             <div class="col-md-6 col-lg-4 mx-auto">
                 <div class="card card-body">
-                    <form (ngSubmit)='onRegisterSubmit()' #registerForm=ngForm>
-                        <div class="form-group has-error">
+                    <form class="form-horizontal"
+                        (ngSubmit)='onRegisterSubmit()'
+                        [formGroup]="userForm" >
+                        <div class="form-group"
+                            [ngClass]="{'error': userForm.controls['username'].errors }">
+
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                <input required minLength="3" class="form-control input-lg" #usernameInput=ngModel [(ngModel)]="user.username" placeholder="Username" name="username" type="text">
+                                <span class="input-group-addon">
+                                  <i class="fa fa-user fa" aria-hidden="true"></i>
+                               </span>
+                               <input class="form-control"
+                                        type="text"
+                                        placeholder="Username (required)"
+                                        formControlName="username" />
                             </div>
-                            <label class="validation-feedback" *ngIf="(usernameInput.errors && (usernameInput.dirty || usernameInput.touched)) || usernameInput.errors && mouseover">
-                                <span *ngIf="usernameInput.errors.required">Username is required</span>
-                                <span *ngIf="usernameInput.errors.minlength">Username must be at least 3 characters </span>
+
+                            <div class="col-md-10">
+                                <span
+                                   *ngIf="userForm.controls['username'].errors">
+                                       Please enter valid username
+                                </span>
+                           </div>
+                        </div>
+
+                        <div class="form-group"
+                            [ngClass]="{'error': userForm.controls['firstName'].errors }">
+
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                  <i class="fa fa-user fa" aria-hidden="true"></i>
+                               </span>
+                               <input class="form-control"
+                                        type="text"
+                                        placeholder="First Name (required)"
+                                        formControlName="firstName" />
+                            </div>
+
+                            <div class="col-md-10">
+                                <span
+                                   *ngIf="userForm.controls['firstName'].errors">
+                                       Please enter valid first name
+                                </span>
+                           </div>
+                        </div>
+
+                        <div class="form-group"
+                            [ngClass]="{'error': userForm.controls['lastName'].errors }">
+
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                  <i class="fa fa-user fa" aria-hidden="true"></i>
+                               </span>
+                               <input class="form-control"
+                                        type="text"
+                                        placeholder="Last Name (required)"
+                                        formControlName="lastName" />
+                            </div>
+
+                            <div class="col-md-10">
+                                <span
+                                   *ngIf="userForm.controls['lastName'].errors">
+                                       Please enter valid last name
+                                </span>
+                           </div>
+                        </div>
+
+                        <div class="form-group"
+                            [ngClass]="{'error': userForm.controls['email'].errors }">
+
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                  <i class="fa fa-envelope" aria-hidden="true"></i>
+                               </span>
+                               <input class="form-control"
+                                        type="text"
+                                        placeholder="Email (required)"
+                                        formControlName="email" />
+                            </div>
+
+                            <div class="col-md-10">
+                                <span
+                                   *ngIf="userForm.controls['email'].errors">
+                                       Please enter valid email
+                                </span>
+                           </div>
+                        </div>
+
+                        <div class="form-group"
+                            [ngClass]="{'error': userForm.controls['password'].errors }">
+
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                  <i class="fa fa-lock fa-lg" aria-hidden="true"></i>
+                               </span>
+                               <input class="form-control"
+                                        type="text"
+                                        placeholder="Password (required)"
+                                        formControlName="password" />
+                            </div>
+
+                            <div class="col-md-10">
+                                <span
+                                   *ngIf="userForm.controls['password'].errors">
+                                       Please enter valid password
+                                </span>
+                           </div>
+                        </div>
+
+                        <div class="checkbox">
+                            <label class="small">
+                                <input name="terms"
+                                       class = "checkbox-testing"
+                                       type="checkbox"> I have read and agree to the
+                                       <a href="#">terms of service</a>
                             </label>
                         </div>
 
-                        <div class="form-group has-error">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                <input required minLength="3" class="form-control input-lg" #firstNameInput=ngModel [(ngModel)]="user.firstName" placeholder="First name" name="firstName" type="text">
-                            </div>
-                            <label class="validation-feedback" *ngIf="(firstNameInput.errors && (firstNameInput.dirty || firstNameInput.touched)) || firstNameInput.errors && mouseover">
-                                <span *ngIf="firstNameInput.errors.required">First Name is required</span>
-                            </label>
-                        </div>
-
-                        <div class="form-group has-error">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                <input required minLength="3" class="form-control input-lg" #lastNameInput=ngModel [(ngModel)]="user.lastName" placeholder="Last name" name="lastName" type="text">
-                            </div>
-                            <label class="validation-feedback" *ngIf="(lastNameInput.errors && (lastNameInput.dirty || lastNameInput.touched)) || lastNameInput.errors && mouseover">
-                                <span *ngIf="lastNameInput.errors.required">Last Name is required</span>
-                            </label>
-                        </div>
-
-                        <div class="form-group has-success">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
-                                <input required class="form-control input-lg" #emailInput=ngModel [(ngModel)]="user.email" placeholder="Email" name="email" value="" type="email">
-                            </div>
-                            <label class="validation-feedback" *ngIf="(emailInput.errors && (emailInput.dirty || emailInput.touched)) || emailInput.errors && mouseover">
-                                <span *ngIf="emailInput.errors.required">Email is required</span>
-                            </label>
-                       </div>
-
-                       <div class="form-group has-success">
-                          <div class="input-group">
-                              <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                              <input #passwordInput=ngModel class="form-control input-lg" [(ngModel)]="user.password" placeholder="Password" name="password" type="password" required minlength="8" pattern="^[a-zA-Z0-9 ]{8,30}$">
-                          </div>
-                          <label class="validation-feedback" *ngIf="(passwordInput.errors && (passwordInput.dirty || passwordInput.touched)) || passwordInput.errors && mouseover">
-                                  <span *ngIf="passwordInput.errors.required">Password is required</span>
-                                  <span *ngIf="passwordInput.errors.minlength">Password must be 8 characters long, we need another {{passwordInput.errors.minlength.requiredLength - passwordInput.errors.minlength.actualLength}} characters </span>
-                                  <span *ngIf="passwordInput.errors.pattern">Password must contain at least one uppercase letter and at least one number.</span>
-                          </label>
-                       </div>
-
-                       <div class="checkbox">
-                          <label class="small">
-                              <input name="terms" class = "checkbox-testing" type="checkbox">I have read and agree to the <a href="#">terms of service</a>
-                          </label>
-                      </div>
-
-                      <input class="btn btn-lg btn-primary btn-block" [disabled]="!registerForm.valid" value="Sign Me Up" type="submit">
-
+                        <input
+                           class="btn btn-lg btn-primary btn-block"
+                          [disabled]="!userForm.valid" value="Sign Me Up" type="submit">
                     </form>
                 </div>
             </div>
