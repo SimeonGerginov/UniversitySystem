@@ -68,6 +68,40 @@ const usersController = (utils) => {
           .catch(() => {
             res.status(400).send(({ success: false, message: 'Invalid Credentials' }))
           });
+    },
+
+    getProfileInfo(req, res) {
+      const user = req.user;
+
+      delete user.salt;
+      delete user.hashedPass;
+
+      return res.json({ success: true, user });
+    },
+
+    updateUserInfo(req, res) {
+      const userToUpdate = req.body;
+      const loggedUser = req.user;
+
+      if(loggedUser.email !== userToUpdate.email) {
+        return res.status(400).send({ success: false, message: 'Can not edit user' });
+      }
+
+      return User.find({ email: userToUpdate.email })
+              .then((foundUser) => {
+                foundUser.firstName = userToUpdate.firstName
+                foundUser.lastName = userToUpdate.lastName,
+                foundUser.profilePictureUrl = userToUpdate.profilePictureUrl;
+                foundUser.username = userToUpdate.username;
+
+                return User.update(foundUser);
+              })
+              .then(() => {
+                return res.status(204).send({ success: true, updateUser: userToUpdate });
+              })
+              .catch((err) => {
+                return res.status(400).send({ success: false, err });
+              });
     }
   }
 };
