@@ -8,6 +8,7 @@ import { User } from '../../shared/models/user.model';
 import { UserStorageService } from '../../shared/services/user-storage.service';
 import { UsersService } from '../../shared/services/users.service';
 import { NotificationService } from '../../shared/services/notification.service';
+import { FileUploaderService } from '../../shared/services/file-uploader.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -16,13 +17,13 @@ import { NotificationService } from '../../shared/services/notification.service'
 })
 export class EditProfileComponent implements OnInit, AfterContentInit, OnDestroy {
   public user: User;
-  public profilePictureUrl: string;
   private subscriptions: Subscription[];
 
   constructor(private router: Router,
               private userStorageService: UserStorageService,
               private userService: UsersService,
-              private notificationService: NotificationService) {
+              private notificationService: NotificationService,
+              private fileUploader: FileUploaderService) {
         this.subscriptions = [];
   }
 
@@ -50,6 +51,21 @@ export class EditProfileComponent implements OnInit, AfterContentInit, OnDestroy
        .subscribe((response: any) => {
          this.userStorageService.setUserInfo(this.user);
          this.notificationService.showSuccess('Your profile has been updated.');
+         this.router.navigateByUrl('/home');
+       }, (err) => {
+         this.notificationService.showError(err);
+       });
+
+     this.subscriptions.push(sub);
+  }
+
+  onChange(files: File[]): void {
+    const sub = this.fileUploader.uploadFile(files)
+       .map((r) => r.json())
+       .subscribe((response: any) => {
+         const { filesUrls } = response;
+         this.user.profilePictureUrl = filesUrls[0];
+         this.notificationService.showInfo('Click on save changes in order to save your work.');
        }, (err) => {
          this.notificationService.showError(err);
        });

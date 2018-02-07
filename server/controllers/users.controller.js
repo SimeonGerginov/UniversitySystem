@@ -3,6 +3,7 @@ const User = require('mongoose').model('User');
 
 const DEFAULT_PROFILE_PICTURE = 'http://www.injazuae.org/wp-content/themes/hope-charity-theme-v16-child/img/default_user.png';
 const DEFAULT_ROLE = 'Student';
+const DEFAULT_SERVER_PATH = 'http://localhost:3000';
 
 const usersController = (utils) => {
   return {
@@ -62,7 +63,7 @@ const usersController = (utils) => {
                 message: `User ${user.username} is now logged in!`,
                 token: token,
                 username: user.username,
-                profilePicture: user.profilePictureUrl
+                profilePicture: DEFAULT_SERVER_PATH + user.profilePictureUrl
               });
           })
           .catch(() => {
@@ -71,10 +72,13 @@ const usersController = (utils) => {
     },
 
     getProfileInfo(req, res) {
-      const user = req.user;
-
-      delete user.salt;
-      delete user.hashedPass;
+      const user = {
+        username: req.user.username,
+        firstName: req.user.firstName,
+        lastName: req.user.lastName,
+        email: req.user.email,
+        profilePictureUrl: DEFAULT_SERVER_PATH + req.user.profilePictureUrl
+      };
 
       return res.json({ success: true, user });
     },
@@ -87,21 +91,13 @@ const usersController = (utils) => {
         return res.status(400).send({ success: false, message: 'Can not edit user' });
       }
 
-      return User.find({ email: userToUpdate.email })
-              .then((foundUser) => {
-                foundUser.firstName = userToUpdate.firstName
-                foundUser.lastName = userToUpdate.lastName,
-                foundUser.profilePictureUrl = userToUpdate.profilePictureUrl;
-                foundUser.username = userToUpdate.username;
+      return User.findOneAndUpdate({ email: userToUpdate.email }, userToUpdate, function (err, place) {
+         if(err) {
+          return res.status(400).send({ success: false, err });
+         }
 
-                return User.update(foundUser);
-              })
-              .then(() => {
-                return res.status(204).send({ success: true, updatedUser: userToUpdate });
-              })
-              .catch((err) => {
-                return res.status(400).send({ success: false, err });
-              });
+         return res.status(204).send({ success: true, updatedUser: userToUpdate });
+      })
     }
   }
 };

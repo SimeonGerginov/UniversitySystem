@@ -35,7 +35,7 @@ export class HttpRequesterService {
     return this.http.put(url, body, requestOptions);
   }
 
-  postFromData(url: string, formData: FormData): Observable<Response> {
+  postFormData(url: string, formData: FormData): Observable<Response> {
     return this.http.post(url, formData);
   }
 }

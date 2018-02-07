@@ -4,6 +4,16 @@
           Edit Your Profile
         </h1>
         <form class="row" (ngSubmit)="onSubmit()" #editProfileForm=ngForm>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="text-center">
+                    <img src="{{this.user.profilePictureUrl}}"
+                         class="avatar img-circle img-thumbnail" alt="avatar">
+                    <h6>Upload a different photo...</h6>
+                    <input (change)="onChange(updateProfilePictureInput.files)"
+                    type="file" #updateProfilePictureInput class="text-center center-block well well-sm">
+                </div>
+            </div>
+
             <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
                 <div class="alert alert-info alert-dismissable">
                     <a class="panel-close close" data-dismiss="alert">×</a>

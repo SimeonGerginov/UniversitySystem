@@ -13,6 +13,7 @@ import { HttpRequesterService } from './services/http-requester.service';
 import { NotificationService } from './services/notification.service';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { LogoutGuardService } from './guards/logout-guard.service';
+import { FileUploaderService } from './services/file-uploader.service';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { LogoutGuardService } from './guards/logout-guard.service';
     HttpRequesterService,
     NotificationService,
     AuthGuardService,
-    LogoutGuardService
+    LogoutGuardService,
+    FileUploaderService
   ]
 })
 export class SharedModule { }
