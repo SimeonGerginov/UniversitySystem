@@ -38,17 +38,22 @@ export class LoginComponent implements OnInit {
   }
 
   onLoginSubmit(): void {
+    this.user.email = this.userForm.value.email;
+    this.user.password = this.userForm.value.password;
+
     this.userService.loginUser(this.user)
         .map((r) => r.json())
         .subscribe((responce: any) => {
+          console.log(responce);
           const { username, token, profilePicture, message } = responce;
 
           this.userStorageService.loginUser(username, token, profilePicture);
           this.notificationService.showSuccess(message);
           this.router.navigateByUrl('/');
-        }, (err) => {
+        },
+        (err) => {
            const { message } = err;
-
+           console.log(err);
            this.notificationService.showError(message);
         });
   }

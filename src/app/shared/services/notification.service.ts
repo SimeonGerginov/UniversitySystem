@@ -15,7 +15,7 @@ export class NotificationService {
   }
 
   showError(message: string) {
-    this.toastr.error(message, 'Error!');
+    this.toastr.error(message, 'Oops you have errors!');
   }
 
   showWarning(message: string) {

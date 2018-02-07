@@ -23,10 +23,9 @@ export class HttpRequesterService {
   }
 
   post(url: string, data: any, requestHeaders: any): Observable<Response> {
-    const body = JSON.stringify(data);
     const requestOptions = this.getRequestOptions(requestHeaders);
 
-    return this.http.post(url, body, requestOptions);
+    return this.http.post(url, data, requestOptions);
   }
 
   put(url: string, data: any, requestHeaders: any): Observable<Response> {

@@ -40,8 +40,8 @@ let userSchema = new Schema({
 });
 
 userSchema.method({
-    authenticate: (password) => {
-        return encryption.generateHashedPassword(this.salt, password) === this.hashedPass;
+    authenticate: (user, password) => {
+        return encryption.generateHashedPassword(user.salt, password) === user.hashedPass;
     }
 });
 

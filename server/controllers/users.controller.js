@@ -39,7 +39,6 @@ const usersController = (utils) => {
 
     login: (req, res) => {
       let reqUser = req.body;
-      console.log(reqUser);
 
       User.findOne({ email: reqUser.email })
           .then((user) => {
@@ -47,7 +46,7 @@ const usersController = (utils) => {
                   return res.status(400).json({ errorMsg: 'User was not found.' });
               }
 
-              if(!user.authenticate(reqUser.password)){
+              if(!user.authenticate(user, reqUser.password)){
                   return res.status(400).json({ errorMsg: 'User is not authenticated.' });
               }
 

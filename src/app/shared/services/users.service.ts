@@ -5,7 +5,7 @@ import { UserStorageService } from './user-storage.service';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../models/user.model';
 
-const DOMAIN_URL = '/api';
+const DOMAIN_URL = 'http://localhost:3000/api';
 const REGISTER_USER_URL = DOMAIN_URL + '/register';
 const LOGIN_USER_URL = DOMAIN_URL + '/login';
 const LOGOUT_USER_URL = DOMAIN_URL + '/logout';
