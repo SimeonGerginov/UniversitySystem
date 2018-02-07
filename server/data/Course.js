@@ -15,6 +15,8 @@ let courseSchema = new Schema({
       unique: true
     },
     lecturers: [ Lecturer ],
+    schedule: [ String ],
+    comments: [ String ],
     students: [ Student ],
     marks: [ StudentMark ] ,
     homeworks: [ Homework ],

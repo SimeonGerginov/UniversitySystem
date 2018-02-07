@@ -12,6 +12,7 @@ const Schema = mongoose.Schema;
 let studentSchema = userSchema.mongooseExtend({
     optionalCourses: [Course],
     requiredCourses: [Course],
+    specialty: String,
     marks: CourseMark,
     homeworks: [Homework],
     homeworksMarks: [homeworkMarks],

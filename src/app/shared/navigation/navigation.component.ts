@@ -38,5 +38,4 @@ export class NavigationComponent implements OnInit, DoCheck {
     this.notificationService.showSuccess('You are now logged out!');
     this.router.navigateByUrl('/home');
   }
-
 }
