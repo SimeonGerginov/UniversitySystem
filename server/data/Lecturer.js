@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const mongooseExtend = require('mongoose-schema-extend');
 const userSchema = require('./User').userSchema;
 
-const Course = require('./Course');
+const Course = mongoose.model('Course');
 
 const Schema = mongoose.Schema;
 
