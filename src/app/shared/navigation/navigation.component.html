@@ -12,8 +12,10 @@
         </ul>
         <ul class="navbar-nav navbar-sidenav ml-auto" id="exampleAccordion">
             <li *ngIf="isUserLogged" class="nav-item">
-                <a class="nav-link" [routerLink]="[ '/profile'] ">
-                    <img src="{{profilePictureUrl}}" alt="pic" class="profile-pic-small img-responsive rounded"> {{username}}
+                <a class="nav-link" [routerLink]="[ '/users/profile'] ">
+                    <img src="{{profilePictureUrl}}"
+                         alt="pic"
+                         class="profile-pic-small img-responsive rounded"> {{username}}
                     <span class="nav-link-text "></span>
                 </a>
             </li>
@@ -34,15 +36,14 @@
                 </a>
             </li>
             <li *ngIf="isUserLogged" class="nav-item dropdown">
-                <a class="nav-link" id="navbarDropdown1" data-target="#" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                        <li><a class="dropdown-item" [routerLink]="['/user/edit']">Edit Profile</a></li>
-                        <li>
-                            <a class="dropdown-item" [routerLink]="[ '/logout'] ">Logout</a>
-                        </li>
-                    </ul>
-                </a>
+                    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                    <button class="btn btn-outline-primary"
+                    id="dropdownBasic1" ngbDropdownToggle>Profile</button>
+                    <ul> ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <button class="dropdown-item">Action - 1</button>
+                        <button class="dropdown-item">Another Action</button>
+                        <button class="dropdown-item">Something else is here</button>
+                   </ul>>
             </li>
         </ul>
     </div>

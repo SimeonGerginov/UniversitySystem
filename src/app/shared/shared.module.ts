@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CookieService } from 'ngx-cookie-service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms/';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -20,7 +19,6 @@ import { LogoutGuardService } from './guards/logout-guard.service';
     HttpModule,
     RouterModule,
     CommonModule,
-    NgbModule,
     AngularFontAwesomeModule,
     ReactiveFormsModule
   ],
@@ -28,7 +26,6 @@ import { LogoutGuardService } from './guards/logout-guard.service';
   exports: [
     HttpModule,
     NavigationComponent,
-    NgbModule,
     AngularFontAwesomeModule,
     CommonModule,
     FormsModule,

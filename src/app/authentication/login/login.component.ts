@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit {
     this.userService.loginUser(this.user)
         .map((r) => r.json())
         .subscribe((responce: any) => {
-          console.log(responce);
           const { username, token, profilePicture, message } = responce;
 
           this.userStorageService.loginUser(username, token, profilePicture);
@@ -53,7 +52,7 @@ export class LoginComponent implements OnInit {
         },
         (err) => {
            const { message } = err;
-           console.log(err);
+
            this.notificationService.showError(message);
         });
   }
