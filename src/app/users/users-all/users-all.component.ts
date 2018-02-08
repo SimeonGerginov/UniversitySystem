@@ -1,9 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
+import { Component, OnInit } from '@angular/core';
 import 'rxjs/add/operator/map';
 
-import { UserStorageService } from '../../shared/services/user-storage.service';
 import { UsersService } from '../../shared/services/users.service';
 import { User } from '../../shared/models/user.model';
 
@@ -12,22 +9,20 @@ import { User } from '../../shared/models/user.model';
   templateUrl: './users-all.component.html',
   styleUrls: ['./users-all.component.css']
 })
-export class UsersAllComponent implements OnInit, OnDestroy {
+export class UsersAllComponent implements OnInit {
   public users: User[];
+  public pageSize: number;
+  public currentPageNumber: number;
 
-  private subscriptions: Subscription[];
-
-  constructor(private userStorageService: UserStorageService,
-              private userService: UsersService,
-              private activatedRoute: ActivatedRoute,
-              private router: Router) { }
+  constructor( private userService: UsersService ) { }
 
   ngOnInit() {
-    this.subscriptions = [];
-    this.users = [];
-  }
-
-  ngOnDestroy() {
-
+     this.pageSize = 5;
+     this.currentPageNumber = 1;
+     this.userService.getAllUsers()
+       .map((r) => r.json())
+       .subscribe((responseUsers) => {
+         this.users = responseUsers;
+       });
   }
 }
