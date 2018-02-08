@@ -6,5 +6,7 @@ module.exports = {
     EMAIL_MATCH_PATTERN: /^[a-z0-9]+[_a-z0-9\.-]*[a-z0-9]+@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/g,
     ADMIN_ROLE: 'Admin',
     MODERATOR_ROLE: 'Moderator',
-    STUDENT_ROLE: 'Student'
+    STUDENT_ROLE: 'Student',
+    SERVER_PATH: 'http://localhost:3000',
+    DEFAULT_PROFILE_PICTURE: 'http://www.injazuae.org/wp-content/themes/hope-charity-theme-v16-child/img/default_user.png'
 };
