@@ -10,6 +10,7 @@ const REGISTER_USER_URL = DOMAIN_URL + '/register';
 const LOGIN_USER_URL = DOMAIN_URL + '/login';
 const USER_INFO_URL = DOMAIN_URL + '/users/profile';
 const UPDATE_USER_URL = DOMAIN_URL + '/users/update';
+const ALL_USERS_URL = DOMAIN_URL + '/users';
 
 @Injectable()
 export class UsersService {
@@ -27,6 +28,10 @@ export class UsersService {
 
   loginUser(user: User): Observable<Response> {
     return this.httpRequester.post(LOGIN_USER_URL, user, {});
+  }
+
+  getAllUsers(): Observable<Response> {
+    return this.httpRequester.get(ALL_USERS_URL, {});
   }
 
   getLoggedUserInfo(): Observable<Response> {

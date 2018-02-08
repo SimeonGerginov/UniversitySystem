@@ -98,6 +98,30 @@ const usersController = (utils) => {
 
          return res.status(204).send({ success: true, updatedUser: userToUpdate });
       })
+    },
+
+    getAllRegularUsers(req, res) {
+      return User.find({ 'roles': DEFAULT_ROLE }, function (err, users) {
+        if(err) {
+          return res.status(400).send({ success: false, err });
+        }
+
+        let userToReturn;
+
+        users = users.map(user => {
+          userToReturn = {
+            username: user.username,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            profilePictureUrl: DEFAULT_SERVER_PATH + user.profilePictureUrl
+          };
+
+          return userToReturn;
+        })
+
+        res.send(users);
+      });
     }
   }
 };
