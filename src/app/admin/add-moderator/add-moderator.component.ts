@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import 'rxjs/add/operator/map';
 
 import { AdminService } from '../../shared/services/admin.service';
 import { NotificationService } from '../../shared/services/notification.service';
-import { User } from '../../shared/models/user.model';
 
 const EMAIL_PATTERN = '^[a-z0-9]+[_a-z0-9\.-]*[a-z0-9]+@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$';
 const PASSWORD_PATTERN = '^[a-zA-Z0-9 ]{8,30}$';
@@ -15,7 +15,6 @@ const PASSWORD_PATTERN = '^[a-zA-Z0-9 ]{8,30}$';
   styleUrls: ['./add-moderator.component.css']
 })
 export class AddModeratorComponent implements OnInit {
-  public moderator: User;
   public moderatorForm: FormGroup;
 
   constructor(private router: Router,
@@ -23,7 +22,6 @@ export class AddModeratorComponent implements OnInit {
               private notificationService: NotificationService) { }
 
   ngOnInit() {
-     this.moderator = new User();
      this.createForm();
   }
 
@@ -44,7 +42,9 @@ export class AddModeratorComponent implements OnInit {
   }
 
   onModeratorCreationSubmit(): void {
-    this.adminService.createModerator(this.moderator)
+    const moderatorFromForm = Object.assign({}, this.moderatorForm.value);
+
+    this.adminService.createModerator(moderatorFromForm)
         .map(r => r.json())
         .subscribe((responceObject) => {
           const { message } = responceObject;

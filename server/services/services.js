@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 
-const getServices = () => {
+const getServices = (utils) => {
   const services = {};
 
   fs.readdirSync(__dirname)
@@ -10,8 +10,8 @@ const getServices = () => {
       const modulePath = path.join(__dirname, fileName);
       const currentService = require(modulePath);
 
-      services[currentService.name] = currentService;
-  });
+      services[currentService.name] = currentService(utils);
+    });
 
   return services;
 }

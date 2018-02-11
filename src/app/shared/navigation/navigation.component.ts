@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { UserStorageService } from '../services/user-storage.service';
 import { NotificationService } from '../services/notification.service';
+import { AdminService } from '../services/admin.service';
 
 @Component({
   selector: 'app-navigation',
@@ -11,15 +12,18 @@ import { NotificationService } from '../services/notification.service';
 })
 export class NavigationComponent implements OnInit, DoCheck {
   isUserLogged: boolean;
+  isUserAdmin: boolean;
   username: string;
   profilePictureUrl: string;
 
   constructor(private userStorageService: UserStorageService,
               private notificationService: NotificationService,
+              private adminService: AdminService,
               private router: Router) { }
 
   ngOnInit() {
     this.isUserLogged = this.userStorageService.isUserLoggedIn();
+    this.isUserAdmin = this.adminService.isUserAdmin();
 
     if (this.isUserLogged) {
       this.username = this.userStorageService.getLoggedUserUsername();

@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
-const app = require('express')();
 
-const initGenerateToken = () => {
+const initGenerateToken = (app) => {
   return {
     generateToken: (jwtObject) => {
       return jwt.sign(jwtObject, app.get('superSecret'), {

@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
         .map((r) => r.json())
         .subscribe((responce: any) => {
           const { username, token, profilePicture, message, role } = responce;
+          console.log(role);
 
           this.userStorageService.loginUser(username, token, profilePicture, role);
           this.notificationService.showSuccess(message);

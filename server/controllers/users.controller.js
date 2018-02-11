@@ -46,7 +46,8 @@ const usersController = ({ userService }) => {
                 profilePicture: globalConstants.SERVER_PATH + user.profilePictureUrl
               });
           })
-          .catch(() => {
+          .catch((err) => {
+            console.log(err);
             res.status(400).send(({ success: false, message: 'Invalid Credentials' }))
           });
     },

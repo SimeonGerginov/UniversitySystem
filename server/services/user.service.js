@@ -1,10 +1,9 @@
 const encryption = require('../utils/encryption');
 const globalConstants = require('../utils/globalConstants');
-const utils = require('../utils/generateToken');
 
 const User = require('mongoose').model('User');
 
-const userService = () => {
+const userService = (utils) => {
   return {
     createUser(reqUser) {
       let salt = encryption.generateSalt();
@@ -88,13 +87,7 @@ const userService = () => {
     getUserRole(user) {
       const roles = user.roles;
 
-      if(roles.indexOf(globalConstants.ADMIN_ROLE) > -1) {
-        return roles[globalConstants.ADMIN_ROLE];
-      } else if(roles.indexOf(globalConstants.MODERATOR_ROLE) > -1) {
-        return roles[globalConstants.MODERATOR_ROLE];
-      } else {
-        return roles[globalConstants.STUDENT_ROLE];
-      }
+      return roles[0];
     }
   }
 }

@@ -5,7 +5,6 @@ import 'rxjs/add/operator/map';
 
 import { UsersService } from '../../shared/services/users.service';
 import { NotificationService } from '../../shared/services/notification.service';
-import { User } from '../../shared/models/user.model';
 
 const EMAIL_PATTERN = '^[a-z0-9]+[_a-z0-9\.-]*[a-z0-9]+@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$';
 const PASSWORD_PATTERN = '^[a-zA-Z0-9 ]{8,30}$';
@@ -16,7 +15,6 @@ const PASSWORD_PATTERN = '^[a-zA-Z0-9 ]{8,30}$';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  public user: User;
   public userForm: FormGroup;
 
   constructor(private userService: UsersService,
@@ -24,7 +22,6 @@ export class RegisterComponent implements OnInit {
               private notificationService: NotificationService) { }
 
   ngOnInit() {
-    this.user = new User();
     this.createForm();
   }
 
@@ -45,7 +42,9 @@ export class RegisterComponent implements OnInit {
   }
 
   onRegisterSubmit(): void {
-    this.userService.registerUser(this.user)
+    const userFromForm = Object.assign({}, this.userForm.value);
+
+    this.userService.registerUser(userFromForm)
         .map(r => r.json())
         .subscribe((responceObject) => {
           const { message } = responceObject;

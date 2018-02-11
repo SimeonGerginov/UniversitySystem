@@ -10,7 +10,8 @@ const init = () => {
   app.use(express.static(path.join(__dirname, '../../../dist/')));
   app.use('/libs', express.static(path.join(__dirname, '../../../node_modules/')));
 
-  const services = require('../services');
+  const utils = require('../utils/generateToken')(app);
+  const services = require('../services')(utils);
   const controllers = require('../controllers')(services);
 
   require('../routers')(app, controllers);

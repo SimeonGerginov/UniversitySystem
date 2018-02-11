@@ -3,7 +3,7 @@ const encryption = require('../utils/encryption');
 
 const User = require('mongoose').model('User');
 
-const adminService = () => {
+const adminService = (utils) => {
   return {
     getAllMods(res) {
       return User.find({})

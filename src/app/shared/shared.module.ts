@@ -15,6 +15,7 @@ import { AuthGuardService } from './guards/auth-guard.service';
 import { LogoutGuardService } from './guards/logout-guard.service';
 import { FileUploaderService } from './services/file-uploader.service';
 import { AdminService } from './services/admin.service';
+import { AdminGuardService } from './guards/admin-guard.service';
 
 @NgModule({
   imports: [
@@ -41,6 +42,7 @@ import { AdminService } from './services/admin.service';
     NotificationService,
     AuthGuardService,
     LogoutGuardService,
+    AdminGuardService,
     FileUploaderService,
     AdminService
   ]
