@@ -16,6 +16,7 @@ import { LogoutGuardService } from './guards/logout-guard.service';
 import { FileUploaderService } from './services/file-uploader.service';
 import { AdminService } from './services/admin.service';
 import { AdminGuardService } from './guards/admin-guard.service';
+import { FullNamePipe } from './pipes/full-name.pipe';
 
 @NgModule({
   imports: [
@@ -25,7 +26,7 @@ import { AdminGuardService } from './guards/admin-guard.service';
     AngularFontAwesomeModule,
     ReactiveFormsModule
   ],
-  declarations: [NavigationComponent],
+  declarations: [NavigationComponent, FullNamePipe],
   exports: [
     HttpModule,
     NavigationComponent,
