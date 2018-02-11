@@ -3,6 +3,10 @@ import 'rxjs/add/operator/map';
 
 import { UsersService } from '../../shared/services/users.service';
 import { User } from '../../shared/models/user.model';
+import { NotificationService } from '../../shared/services/notification.service';
+
+const PAGE_SIZE = 5;
+const DEFAULT_PAGE_NUMBER = 1;
 
 @Component({
   selector: 'app-users-all',
@@ -14,15 +18,17 @@ export class UsersAllComponent implements OnInit {
   public pageSize: number;
   public currentPageNumber: number;
 
-  constructor( private userService: UsersService ) { }
+  constructor( private userService: UsersService,
+               private notificationService: NotificationService ) { }
 
   ngOnInit() {
-     this.pageSize = 5;
-     this.currentPageNumber = 1;
+     this.pageSize = PAGE_SIZE;
+     this.currentPageNumber = DEFAULT_PAGE_NUMBER;
      this.userService.getAllUsers()
        .map((r) => r.json())
        .subscribe((responseUsers) => {
          this.users = responseUsers;
+         this.notificationService.showInfo('All users are delivered.');
        });
   }
 }

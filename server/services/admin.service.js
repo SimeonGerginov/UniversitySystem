@@ -6,10 +6,11 @@ const User = require('mongoose').model('User');
 const adminService = (utils) => {
   return {
     getAllMods(res) {
-      return User.find({})
-        .where(globalConstants.MODERATOR_ROLE).in('roles')
-        .sort('firstName')
-        .then((moderators) => {
+      return User.find({
+        roles : { "$in" : [ globalConstants.MODERATOR_ROLE ] }
+      })
+      .sort('firstName')
+      .then((moderators) => {
           let moderatorToReturn;
 
           moderators = moderators.map((mod) => {
@@ -18,14 +19,16 @@ const adminService = (utils) => {
               firstName: mod.firstName,
               lastName: mod.lastName,
               email: mod.email,
-              profilePictureUrl: globalConstants.SERVER_PATH + mod.profilePictureUrl
+              profilePictureUrl: mod.profilePictureUrl === globalConstants.DEFAULT_PROFILE_PICTURE ?
+              globalConstants.DEFAULT_PROFILE_PICTURE :
+              globalConstants.SERVER_PATH + mod.profilePictureUrl
             };
 
             return moderatorToReturn;
           });
 
          return res.send(moderators);
-        })
+     })
     },
 
     createMod(moderator) {

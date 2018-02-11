@@ -33,7 +33,8 @@ import { FullNamePipe } from './pipes/full-name.pipe';
     AngularFontAwesomeModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FullNamePipe
   ],
   providers: [
     CookieService,

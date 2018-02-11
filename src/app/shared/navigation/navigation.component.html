@@ -27,6 +27,15 @@
                 </span>
               </a>
             </li>
+
+            <li *ngIf="isUserAdmin" class="nav-item">
+              <a class="nav-link" [routerLink]="[ '/admin/all'] ">
+                <i class="fa fa-user"></i>
+                <span class="nav-link-text ">
+                    List of Moderators
+                </span>
+              </a>
+            </li>
         </ul>
 
         <ul class="navbar-nav navbar-sidenav ml-auto" id="exampleAccordion">
