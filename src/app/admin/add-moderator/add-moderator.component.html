@@ -1,0 +1,137 @@
+<main>
+  <div class="container py-3">
+      <div class="row">
+          <div class="col-md-6 col-lg-4 mx-auto">
+              <div class="card card-body">
+                  <form class="form-horizontal"
+                      (ngSubmit)='onModeratorCreationSubmit()'
+                      [formGroup]="moderatorForm" >
+                      <div class="form-group"
+                          [ngClass]="{'error': moderatorForm.controls['username'].errors }">
+
+                          <div class="input-group">
+                              <span class="input-group-addon">
+                                <i class="fa fa-user fa" aria-hidden="true"></i>
+                             </span>
+                             <input class="form-control"
+                                      type="text"
+                                      placeholder="Username (required)"
+                                      formControlName="username" />
+                          </div>
+
+                          <div class="col-md-10">
+                              <span
+                                 *ngIf="(moderatorForm.controls['username'].errors &&
+                                        (moderatorForm.controls['username'].dirty  ||
+                                         moderatorForm.controls['username'].touched)) ||
+                                         moderatorForm.controls['username'].errors && mouseover">
+                                     Please enter valid username
+                              </span>
+                         </div>
+                      </div>
+
+                      <div class="form-group"
+                          [ngClass]="{'error': moderatorForm.controls['firstName'].errors }">
+
+                          <div class="input-group">
+                              <span class="input-group-addon">
+                                <i class="fa fa-user fa" aria-hidden="true"></i>
+                             </span>
+                             <input class="form-control"
+                                      type="text"
+                                      placeholder="First Name (required)"
+                                      formControlName="firstName" />
+                          </div>
+
+                          <div class="col-md-10">
+                              <span
+                                 *ngIf="(moderatorForm.controls['firstName'].errors &&
+                                        (moderatorForm.controls['firstName'].dirty  ||
+                                        moderatorForm.controls['firstName'].touched)) ||
+                                        moderatorForm.controls['firstName'].errors && mouseover">
+                                     Please enter valid first name
+                              </span>
+                         </div>
+                      </div>
+
+                      <div class="form-group"
+                          [ngClass]="{'error': moderatorForm.controls['lastName'].errors }">
+
+                          <div class="input-group">
+                              <span class="input-group-addon">
+                                <i class="fa fa-user fa" aria-hidden="true"></i>
+                             </span>
+                             <input class="form-control"
+                                      type="text"
+                                      placeholder="Last Name (required)"
+                                      formControlName="lastName" />
+                          </div>
+
+                          <div class="col-md-10">
+                              <span
+                                 *ngIf="(moderatorForm.controls['lastName'].errors &&
+                                        (moderatorForm.controls['lastName'].dirty  ||
+                                        moderatorForm.controls['lastName'].touched)) ||
+                                        moderatorForm.controls['lastName'].errors && mouseover">
+                                     Please enter valid last name
+                              </span>
+                         </div>
+                      </div>
+
+                      <div class="form-group"
+                          [ngClass]="{'error': moderatorForm.controls['email'].errors }">
+
+                          <div class="input-group">
+                              <span class="input-group-addon">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                             </span>
+                             <input class="form-control"
+                                      type="text"
+                                      placeholder="Email (required)"
+                                      formControlName="email" />
+                          </div>
+
+                          <div class="col-md-10">
+                              <span
+                                 *ngIf="(moderatorForm.controls['email'].errors &&
+                                        (moderatorForm.controls['email'].dirty  ||
+                                        moderatorForm.controls['email'].touched)) ||
+                                        moderatorForm.controls['email'].errors && mouseover">
+                                     Please enter valid email
+                              </span>
+                         </div>
+                      </div>
+
+                      <div class="form-group"
+                          [ngClass]="{'error': moderatorForm.controls['password'].errors }">
+
+                          <div class="input-group">
+                              <span class="input-group-addon">
+                                <i class="fa fa-lock fa-lg" aria-hidden="true"></i>
+                             </span>
+                             <input class="form-control"
+                                      type="text"
+                                      placeholder="Password (required)"
+                                      formControlName="password" />
+                          </div>
+
+                          <div class="col-md-10">
+                              <span
+                                 *ngIf="(moderatorForm.controls['password'].errors &&
+                                        (moderatorForm.controls['password'].dirty  ||
+                                        moderatorForm.controls['password'].touched)) ||
+                                        moderatorForm.controls['password'].errors && mouseover">
+                                     Please enter valid password
+                              </span>
+                         </div>
+                      </div>
+
+                      <input
+                         class="btn btn-lg btn-primary btn-block"
+                        [disabled]="!moderatorForm.valid" value="Create" type="submit">
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</main>

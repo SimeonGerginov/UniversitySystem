@@ -14,6 +14,7 @@ import { NotificationService } from './services/notification.service';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { LogoutGuardService } from './guards/logout-guard.service';
 import { FileUploaderService } from './services/file-uploader.service';
+import { AdminService } from './services/admin.service';
 
 @NgModule({
   imports: [
@@ -40,7 +41,8 @@ import { FileUploaderService } from './services/file-uploader.service';
     NotificationService,
     AuthGuardService,
     LogoutGuardService,
-    FileUploaderService
+    FileUploaderService,
+    AdminService
   ]
 })
 export class SharedModule { }

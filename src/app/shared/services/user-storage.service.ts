@@ -5,6 +5,7 @@ import { User } from '../models/user.model';
 const USERNAME_COOKIE_NAME = 'username';
 const TOKEN_COOKIE_NAME = 'auth-token';
 const PROFILE_PICTURE_COOKIE_NAME = 'profile-pic';
+const USER_ROLE = 'user-role';
 
 @Injectable()
 export class UserStorageService {
@@ -15,10 +16,11 @@ export class UserStorageService {
     return this.cookieService.check(TOKEN_COOKIE_NAME);
   }
 
-  loginUser(username: string, authToken: string, profilePicture: string): void {
+  loginUser(username: string, authToken: string, profilePicture: string, role: string): void {
     this.cookieService.set(USERNAME_COOKIE_NAME, username);
     this.cookieService.set(TOKEN_COOKIE_NAME, authToken);
     this.cookieService.set(PROFILE_PICTURE_COOKIE_NAME, profilePicture);
+    this.cookieService.set(USER_ROLE, role);
   }
 
   logoutUser(): void {
@@ -35,6 +37,10 @@ export class UserStorageService {
 
   getLoggedUserToken(): string {
     return this.cookieService.get(TOKEN_COOKIE_NAME);
+  }
+
+  getLoggedUserRole(): string {
+    return this.cookieService.get(USER_ROLE);
   }
 
   setUserInfo(user: User): void {

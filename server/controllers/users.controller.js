@@ -35,12 +35,14 @@ const usersController = ({ userService }) => {
               }
 
               const token = userService.getToken(user);
+              let role = userService.getUserRole(user);
 
               return res.send({
                 success: true,
                 message: `User ${user.username} is now logged in!`,
                 token: token,
                 username: user.username,
+                role: role,
                 profilePicture: globalConstants.SERVER_PATH + user.profilePictureUrl
               });
           })
