@@ -7,6 +7,8 @@ module.exports = {
     ADMIN_ROLE: 'Admin',
     MODERATOR_ROLE: 'Moderator',
     STUDENT_ROLE: 'Student',
+    LECTURER_ROLE: 'Lecturer',
     SERVER_PATH: 'http://localhost:3000',
-    DEFAULT_PROFILE_PICTURE: 'http://www.injazuae.org/wp-content/themes/hope-charity-theme-v16-child/img/default_user.png'
+    DEFAULT_PROFILE_PICTURE: 'http://www.injazuae.org/wp-content/themes/hope-charity-theme-v16-child/img/default_user.png',
+    DEFAULT_STUDENT_SPECIALTY: 'Computer Science'
 };

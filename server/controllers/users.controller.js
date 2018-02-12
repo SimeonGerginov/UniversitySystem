@@ -1,12 +1,19 @@
 const encryption = require('../utils/encryption');
 const globalConstants = require('../utils/globalConstants');
 
-const usersController = ({ userService }) => {
+const usersController = ({ userService, moderatorService }) => {
   return {
     register: (req, res) => {
        if (req.user) {
           return res.status(400).json({errorMessage: 'You are already logged in.'})
        }
+
+       moderatorService.createStud(req.body)
+          .then(() => {
+          })
+          .catch((err) => {
+            console.log(err);
+          });
 
        userService.createUser(req.body)
           .then((user) => {
