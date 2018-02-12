@@ -15,13 +15,14 @@ const adminService = (utils) => {
 
           moderators = moderators.map((mod) => {
             moderatorToReturn = {
+              id: mod._id,
               username: mod.username,
               firstName: mod.firstName,
               lastName: mod.lastName,
               email: mod.email,
               profilePictureUrl: mod.profilePictureUrl === globalConstants.DEFAULT_PROFILE_PICTURE ?
               globalConstants.DEFAULT_PROFILE_PICTURE :
-              globalConstants.SERVER_PATH + mod.profilePictureUrl
+              mod.profilePictureUrl
             };
 
             return moderatorToReturn;
@@ -29,6 +30,29 @@ const adminService = (utils) => {
 
          return res.send(moderators);
      })
+    },
+
+    getMod(id, res) {
+      return User
+          .findById(id)
+          .then((moderator) => {
+              if(!moderator) {
+                 return res.status(400).json({ success: false, message: 'Moderator not found.' });
+              }
+
+              let moderatorToReturn = {
+                username: moderator.username,
+                firstName: moderator.firstName,
+                lastName: moderator.lastName,
+                email: moderator.email,
+                profilePictureUrl: moderator.profilePictureUrl === globalConstants.DEFAULT_PROFILE_PICTURE ?
+                globalConstants.DEFAULT_PROFILE_PICTURE :
+                moderator.profilePictureUrl,
+                roles: moderator.roles
+              };
+
+              return res.send(moderatorToReturn)
+          });
     },
 
     createMod(moderator) {
@@ -72,16 +96,13 @@ const adminService = (utils) => {
     },
 
     updateMod(moderator, res) {
-      return User.findById(moderator._id)
-         .then((foundUser) => {
-           return User.findOneAndUpdate({ email: foundUser.email }, moderator, function (err, place) {
-             if(err) {
-              return res.status(400).send({ success: false, err });
-             }
+      return User.findOneAndUpdate({ email: moderator.email }, moderator, function (err, doc) {
+        if(err) {
+         return res.status(400).send({ success: false, err });
+        }
 
-             return res.status(204).send({ success: true, updatedModerator: foundUser });
-           });
-         });
+        return res.status(204).send({ success: true, updatedModerator: moderator });
+      });
     },
 
     deleteMod(moderator, res) {

@@ -27,7 +27,6 @@ export class AllModeratorsComponent implements OnInit {
     this.adminService.getAllModerators()
         .map((r) => r.json())
         .subscribe((responseModerators) => {
-          console.log(responseModerators);
           this.moderators = responseModerators;
           this.notificationService.showInfo('Current Moderators available.');
         });

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { HttpRequesterService } from './http-requester.service';
 import { UserStorageService } from './user-storage.service';
+import { User } from '../models/user.model';
 
 const DOMAIN_URL = 'http://localhost:3000/api/admin';
 const ALL_MODERATORS_URL = DOMAIN_URL + '/moderators';
@@ -46,7 +47,19 @@ export class AdminService {
     return this.httpRequester.post(CREATE_MODERATOR_URL, moderator, headers);
   }
 
-  updateModerator(id: number): Observable<Response> {
+  getModerator(id: string): Observable<Response> {
+    const token = this.userStorage.getLoggedUserToken();
+    const headers = {
+      token,
+      'Content-Type': 'application/json'
+    };
+
+    const GET_MODERATOR_URL = DOMAIN_URL + `/moderators/${id}`;
+
+    return this.httpRequester.get(GET_MODERATOR_URL, headers);
+  }
+
+  updateModerator(id: string, moderator: User): Observable<Response> {
     const token = this.userStorage.getLoggedUserToken();
     const headers = {
       token,
@@ -55,7 +68,7 @@ export class AdminService {
 
     const UPDATE_MODERATOR_URL = DOMAIN_URL + `/moderators/${id}`;
 
-    return this.httpRequester.put(UPDATE_MODERATOR_URL, {}, headers);
+    return this.httpRequester.put(UPDATE_MODERATOR_URL, moderator, headers);
   }
 
 }

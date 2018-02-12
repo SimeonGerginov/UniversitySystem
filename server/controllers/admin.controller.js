@@ -13,6 +13,18 @@ const adminController = ({ adminService }) => {
       return adminService.getAllMods(res);
     },
 
+    getModerator: (req, res) =>{
+      const admin = req.user;
+      const isAdmin = controllerHelpers.isAdmin(admin);
+
+      if(!isAdmin) {
+        return res.status(400).json({ success: false, message: 'Unauthorized user.' });
+      }
+
+      const id = req.params.id;
+      adminService.getMod(id, res);
+    },
+
     createModerator: (req, res) => {
       const admin = req.user;
       const moderator = req.body;

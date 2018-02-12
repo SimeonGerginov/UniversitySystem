@@ -5,6 +5,6 @@ export class User {
   email: string;
   password: string;
   profilePictureUrl?: string;
-  _id?: string;
+  id?: string;
   roles: [string];
 }
