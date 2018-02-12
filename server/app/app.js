@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
-const init = () => {
+const init = (settings) => {
   require('./config/app.config')(app);
   require('./config/auth.config')(app);
 
@@ -15,6 +15,8 @@ const init = () => {
   const controllers = require('../controllers')(services);
 
   require('../routers')(app, controllers);
+
+  require('./config/socket.config')(app, settings.port);
 
   app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, "../../dist/index.html"));
