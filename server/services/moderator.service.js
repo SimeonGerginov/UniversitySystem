@@ -105,6 +105,52 @@ const moderatorService = (utils) => {
           });
     },
 
+    getAllRequiredCourses(res) {
+      return Course.find({ isRequired: true })
+          .sort('name')
+          .then((courses) => {
+            let courseToReturn;
+
+            courses = courses.map((course) => {
+              courseToReturn = {
+                id: course._id,
+                name: course.name,
+                lecturers: course.lecturers,
+                students: course.students,
+                credits: course.credits,
+                availablePlacesInCourse: course.availablePlacesInCourse
+              };
+
+              return courseToReturn;
+            });
+
+            return res.send(courses);
+          });
+    },
+
+    getAllOptionalCourses(res) {
+      return Course.find({ isRequired: false })
+          .sort('name')
+          .then((courses) => {
+            let courseToReturn;
+
+            courses = courses.map((course) => {
+              courseToReturn = {
+                id: course._id,
+                name: course.name,
+                lecturers: course.lecturers,
+                students: course.students,
+                credits: course.credits,
+                availablePlacesInCourse: course.availablePlacesInCourse
+              };
+
+              return courseToReturn;
+            });
+
+            return res.send(courses);
+          });
+    },
+
     getStudent(studentId, res) {
       let student;
       Student.findById(studentId, function(err, s) {
@@ -168,6 +214,19 @@ const moderatorService = (utils) => {
                });
         });
       };
+    },
+
+    addCommentToCourse(courseId, comment, res) {
+      const course = getCourse(courseId, res);
+
+      Course.update({ '_id': courseId },
+           { $push: {'comments': comment }}, function(err, raw) {
+             if(err) {
+               return res.status(400).send({ success: false, err });
+             }
+
+             return res.status(200).send({ success: true, message: 'Course updated.' });
+      });
     }
   }
 }
