@@ -9,7 +9,7 @@ let homeworkSchema = new Schema({
     required: true
   },
   students: [ Student ],
-  file: String
+  fileUrl: String
 });
 
 let courseMark = mongoose.model('CourseMark', courseMarkSchema);
