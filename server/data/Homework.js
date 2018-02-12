@@ -9,10 +9,7 @@ let homeworkSchema = new Schema({
     required: true
   },
   students: [ Student ],
-  zip: {
-    data: Buffer,
-    contentType: String
-  }
+  file: String
 });
 
 let courseMark = mongoose.model('CourseMark', courseMarkSchema);

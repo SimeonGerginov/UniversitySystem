@@ -16,7 +16,11 @@ const configApp = (app) => {
 
     const storage = multer.diskStorage({
       filename: function (req, file, cb) {
-        cb(null, `${Date.now()}.jpg`)
+        if(file.mimetype === 'text/plain') {
+          cb(null, `${Date.now()}.pdf`);
+        }
+
+        cb(null, `${Date.now()}.jpg`);
       },
       destination: function (req, file, cb) {
         cb(null, path.join(__dirname, `../../uploads`));

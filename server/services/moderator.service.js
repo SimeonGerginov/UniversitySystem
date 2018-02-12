@@ -28,8 +28,7 @@ const moderatorService = (utils) => {
           creditsToAchieve: 240,
           currentCourseInUniversity: student.currentCourseInUniversity ?
           student.currentCourseInUniversity : 1,
-          homeworks: [],
-          homeworksMarks: []
+          homeworks: []
       };
 
       return Student.create(reqStudent);
@@ -59,12 +58,10 @@ const moderatorService = (utils) => {
       const reqCourse = {
           name: course.name,
           lecturers: [],
-          schedule: course.schedule,
           comments: [],
           students: [],
           marks: [],
           homeworks: [],
-          homeworksMarks: [],
           isRequired: course.isRequired,
           credits: course.credits,
           maxPlacesInCourse: course.maxPlacesInCourse,

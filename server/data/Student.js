@@ -5,7 +5,6 @@ const userSchema = require('./User').userSchema;
 const Course = mongoose.model('Course');
 const CourseMark = mongoose.model('CourseMark');
 const Homework = mongoose.model('Homework');
-const HomeworkMark = mongoose.model('HomeworkMark');
 
 const Schema = mongoose.Schema;
 
@@ -18,7 +17,6 @@ let studentSchema = userSchema.mongooseExtend({
       default: {}
     },
     homeworks: [Homework],
-    homeworksMarks: [homeworkMarks],
     currentCreditsCount: {
         type: Number,
         default: 0
