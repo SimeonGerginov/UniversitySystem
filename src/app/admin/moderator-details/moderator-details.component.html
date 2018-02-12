@@ -8,7 +8,9 @@
       <p class="text-center">Full name: {{moderator | fullName}}</p>
       <p class="text-center">Email: {{moderator.email}}</p>
 
-      <input [routerLink]="['/admin/edit', moderator.id]" class="btn btn-lg btn-warning btn-link" value="Edit" type="submit">
-      <input class="btn btn-lg btn-danger btn-link" value="Delete" type="submit">
+      <input [routerLink]="['/admin/edit', moderator.id]"
+             class="btn btn-lg btn-warning btn-link" value="Edit" type="submit">
+      <input [routerLink]="['/admin/delete', moderator.id]"
+             class="btn btn-lg btn-danger btn-link" value="Delete" type="submit">
   </div>
 </div>

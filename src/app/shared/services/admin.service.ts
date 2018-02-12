@@ -63,4 +63,15 @@ export class AdminService {
     return this.httpRequester.put(UPDATE_MODERATOR_URL, moderator, headers);
   }
 
+  deleteModerator(id: string): Observable<Response> {
+    const token = this.userStorage.getLoggedUserToken();
+    const headers = {
+      token,
+      'Content-Type': 'application/json'
+    };
+
+    const DELETE_MODERATOR_URL = DOMAIN_URL + `/moderators/${id}`;
+
+    return this.httpRequester.delete(DELETE_MODERATOR_URL, headers);
+  }
 }

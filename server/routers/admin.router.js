@@ -11,6 +11,8 @@ const attachRoutes = (app, {adminController}) => {
           auth.isInRole(globalConstants.ADMIN_ROLE), adminController.createModerator);
   app.put('/api/admin/moderators/:id', passport.authenticate('jwt'),
           auth.isInRole(globalConstants.ADMIN_ROLE), adminController.updateModerator);
+  app.delete('/api/admin/moderators/:id', passport.authenticate('jwt'),
+          auth.isInRole(globalConstants.ADMIN_ROLE), adminController.deleteModerator);
 };
 
 module.exports = attachRoutes;

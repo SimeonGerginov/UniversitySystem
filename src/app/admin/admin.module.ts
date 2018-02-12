@@ -8,6 +8,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { ModeratorDetailsComponent } from './moderator-details/moderator-details.component';
 import { AllModeratorsComponent } from './all-moderators/all-moderators.component';
 import { EditModeratorComponent } from './edit-moderator/edit-moderator.component';
+import { DeleteModeratorComponent } from './delete-moderator/delete-moderator.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { EditModeratorComponent } from './edit-moderator/edit-moderator.componen
     AdminRoutingModule,
     NgxPaginationModule
   ],
-  declarations: [AddModeratorComponent, ModeratorDetailsComponent, AllModeratorsComponent, EditModeratorComponent]
+  declarations: [AddModeratorComponent, ModeratorDetailsComponent, AllModeratorsComponent, EditModeratorComponent, DeleteModeratorComponent]
 })
 export class AdminModule { }

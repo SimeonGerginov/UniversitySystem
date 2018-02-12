@@ -62,6 +62,19 @@ const adminController = ({ adminService }) => {
       }
 
       adminService.updateMod(moderator, res);
+    },
+
+    deleteModerator: (req, res) => {
+      const admin = req.user;
+      const id = req.params.id;
+
+      const isAdmin = controllerHelpers.isAdmin(admin);
+
+      if (!isAdmin) {
+        return res.status(400).json({ success: false, message: 'Unauthorized user.' });
+      }
+
+      adminService.deleteMod(id, res);
     }
   }
 };

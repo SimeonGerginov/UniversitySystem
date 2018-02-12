@@ -35,6 +35,12 @@ export class HttpRequesterService {
     return this.http.put(url, body, requestOptions);
   }
 
+  delete(url: string, requestHeaders: any): Observable<Response> {
+    const requestOptions = this.getRequestOptions(requestHeaders);
+
+    return this.http.delete(url, requestHeaders);
+  }
+
   postFormData(url: string, formData: FormData): Observable<Response> {
     return this.http.post(url, formData);
   }
