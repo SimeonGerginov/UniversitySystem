@@ -73,28 +73,6 @@ const adminService = (utils) => {
       return User.create(reqModerator);
     },
 
-    addMod(moderator, res) {
-      return User.find({ email: moderator.email })
-         .then((foundUser) => {
-            const moderatorRole = globalConstants.MODERATOR_ROLE;
-            const studentRoleIndex = foundUser.roles.indexOf(studentRole);
-
-            if(studentRoleIndex > -1) {
-              foundUser.roles.splice(studentRoleIndex, 1);
-            }
-
-            foundUser.roles.push(moderatorRole);
-
-            return User.findOneAndUpdate({ email: foundUser.email }, foundUser, function (err, place) {
-              if(err) {
-                return res.status(400).send({ success: false, err });
-              }
-
-              return res.status(204).send({ success: true, updatedModerator: foundUser });
-            });
-          });
-    },
-
     updateMod(moderator, res) {
       return User.findOneAndUpdate({ email: moderator.email }, moderator, function (err, doc) {
         if(err) {
@@ -102,29 +80,6 @@ const adminService = (utils) => {
         }
 
         return res.status(204).send({ success: true, updatedModerator: moderator });
-      });
-    },
-
-    deleteMod(moderator, res) {
-      return User.find({ email: moderator.email })
-         .then((foundUser) => {
-            const moderatorRole = globalConstants.MODERATOR_ROLE;
-            const indexOfModeratorRole = foundUser.roles.indexOf(moderatorRole);
-
-            if(indexOfModeratorRole > -1) {
-              foundUser.roles.splice(indexOfModeratorRole, 1);
-            }
-
-            const studentRole = globalConstants.STUDENT_ROLE;
-            foundUser.roles.push(studentRole);
-
-            return User.findOneAndUpdate({ email: foundUser.email }, foundUser, function (err, place) {
-              if(err) {
-                return res.status(400).send({ success: false, err });
-              }
-
-              return res.status(204).send({ success: true, updatedModerator: foundUser });
-            });
       });
     }
   }

@@ -9,8 +9,6 @@ import { User } from '../models/user.model';
 const DOMAIN_URL = 'http://localhost:3000/api/admin';
 const ALL_MODERATORS_URL = DOMAIN_URL + '/moderators';
 const CREATE_MODERATOR_URL = DOMAIN_URL + '/moderators';
-const ADMIN_ROLE = 'Admin';
-
 @Injectable()
 export class AdminService {
 
@@ -18,13 +16,7 @@ export class AdminService {
               private userStorage: UserStorageService) { }
 
   isUserAdmin(): boolean {
-    const role = this.userStorage.getLoggedUserRole();
-
-    if (role === ADMIN_ROLE) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.userStorage.isUserAdmin();
   }
 
   getAllModerators(): Observable<Response> {

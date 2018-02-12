@@ -6,6 +6,7 @@ const USERNAME_COOKIE_NAME = 'username';
 const TOKEN_COOKIE_NAME = 'auth-token';
 const PROFILE_PICTURE_COOKIE_NAME = 'profile-pic';
 const USER_ROLE = 'user-role';
+const ADMIN_ROLE = 'Admin';
 
 @Injectable()
 export class UserStorageService {
@@ -14,6 +15,10 @@ export class UserStorageService {
 
   isUserLoggedIn(): boolean {
     return this.cookieService.check(TOKEN_COOKIE_NAME);
+  }
+
+  isUserAdmin(): boolean {
+    return this.cookieService.get(USER_ROLE) === ADMIN_ROLE;
   }
 
   loginUser(username: string, authToken: string, profilePicture: string, role: string): void {
@@ -37,10 +42,6 @@ export class UserStorageService {
 
   getLoggedUserToken(): string {
     return this.cookieService.get(TOKEN_COOKIE_NAME);
-  }
-
-  getLoggedUserRole(): string {
-    return this.cookieService.get(USER_ROLE);
   }
 
   setUserInfo(user: User): void {
