@@ -72,6 +72,102 @@ const moderatorService = (utils) => {
       };
 
       return Course.create(reqCourse);
+    },
+
+    getAllStudents(res) {
+      return Student.find({})
+          .sort('username')
+          .then((students) => {
+            let studentToReturn;
+
+            students = students.map((student) => {
+              studentToReturn = {
+                id: student._id,
+                username: student.username,
+                firstName: student.firstName,
+                lastName: student.lastName,
+                email: student.email,
+                profilePictureUrl: student.profilePictureUrl === globalConstants.DEFAULT_PROFILE_PICTURE ?
+                globalConstants.DEFAULT_PROFILE_PICTURE :
+                student.profilePictureUrl,
+                requiredCourses: student.requiredCourses,
+                optionalCourses: student.optionalCourses,
+                specialty: student.specialty,
+                currentCourseInUniversity: student.currentCourseInUniversity,
+                creditsToAchieve: student.creditsToAchieve,
+                marks: student.marks
+              };
+
+              return studentToReturn;
+            });
+
+            return res.send(students);
+          });
+    },
+
+    getStudent(studentId, res) {
+      let student;
+      Student.findById(studentId, function(err, s) {
+        if(err) {
+          return res.status(400).send({ success: false, err });
+        }
+
+        student = s;
+      });
+
+      return student;
+    },
+
+    getCourse(courseId, res) {
+      let course;
+      Course.findById(courseId, function(err, c) {
+        if(err) {
+          return res.status(400).send({ success: false, err });
+        }
+
+        course = c;
+      });
+
+      return course;
+    },
+
+    addStudentToCourse(courseId, studentId, res) {
+      const student = getStudent(studentId, res);
+      const course = getCourse(courseId, res);
+
+      if(course.isRequired) {
+        Course.update({ '_id': courseId },
+           { $push: {'students': student }}, function(err, raw) {
+             if(err) {
+               return res.status(400).send({ success: false, err });
+             }
+
+            Student.update({ '_id': studentId },
+               { $push: {'requiredCourses': course }}, function(err, raw) {
+                 if(err) {
+                   return res.status(400).send({ success: false, err });
+                 }
+
+                 return res.status(200).send({ success: true, message: 'Course updated.' });
+               });
+        });
+      } else {
+        Course.update({ '_id': courseId },
+           { $push: {'students': student }}, function(err, raw) {
+             if(err) {
+               return res.status(400).send({ success: false, err });
+             }
+
+            Student.update({ '_id': studentId },
+               { $push: {'optionalCourses': course }}, function(err, raw) {
+                 if(err) {
+                   return res.status(400).send({ success: false, err });
+                 }
+
+                 return res.status(200).send({ success: true, message: 'Course updated.' });
+               });
+        });
+      };
     }
   }
 }

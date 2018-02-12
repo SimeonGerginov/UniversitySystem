@@ -9,7 +9,7 @@ const adminService = (utils) => {
       return User.find({
         roles : { "$in" : [ globalConstants.MODERATOR_ROLE ] }
       })
-      .sort('firstName')
+      .sort('username')
       .then((moderators) => {
           let moderatorToReturn;
 

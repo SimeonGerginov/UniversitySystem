@@ -63,6 +63,31 @@ const moderatorController = ({ moderatorService }) => {
           .catch((err) => {
               return res.status(400).json({ errorMsg: err });
           });
+    },
+
+    addStudentToCourse: (req, res) => {
+      const moderator = req.user;
+      const isModerator = controllerHelpers.isModerator(moderator);
+
+      if (!isModerator) {
+        return res.status(400).json({ success: false, message: 'Unauthorized user.' });
+      }
+
+      const courseId = req.params.courseId;
+      const studentId = req.params.studentId;
+
+      moderatorService.addStudentToCourse(courseId, studentId, res);
+    },
+
+    getAllStudents: (req, res) => {
+      const moderator = req.user;
+      const isModerator = controllerHelpers.isModerator(moderator);
+
+      if (!isModerator) {
+        return res.status(400).json({ success: false, message: 'Unauthorized user.' });
+      }
+
+      moderatorService.getAllStudents(res);
     }
   }
 }
