@@ -79,6 +79,35 @@ const moderatorController = ({ moderatorService }) => {
       moderatorService.addStudentToCourse(courseId, studentId, res);
     },
 
+    addLecturerToCourse: (req, res) => {
+      const moderator = req.user;
+      const isModerator = controllerHelpers.isModerator(moderator);
+
+      if (!isModerator) {
+        return res.status(400).json({ success: false, message: 'Unauthorized user.' });
+      }
+
+      const courseId = req.params.courseId;
+      const lecturerId = req.params.lecturerId;
+
+      moderatorService.addLecturerToCourse(courseId, lecturerId, res);
+    },
+
+    addMarkToStudentForCourse: (req, res) => {
+      const moderator = req.user;
+      const isModerator = controllerHelpers.isModerator(moderator);
+
+      if (!isModerator) {
+        return res.status(400).json({ success: false, message: 'Unauthorized user.' });
+      }
+
+      const courseId = req.params.courseId;
+      const studentId = req.params.studentId;
+      const mark = req.body;
+
+      moderatorService.addMarkToStudentForCourse(courseId, studentId, mark, res);
+    },
+
     getAllStudents: (req, res) => {
       const moderator = req.user;
       const isModerator = controllerHelpers.isModerator(moderator);
@@ -110,6 +139,17 @@ const moderatorController = ({ moderatorService }) => {
       }
 
       moderatorService.getAllOptionalCourses(res);
+    },
+
+    getAllLecturers: (req, res) => {
+      const moderator = req.user;
+      const isModerator = controllerHelpers.isModerator(moderator);
+
+      if (!isModerator) {
+        return res.status(400).json({ success: false, message: 'Unauthorized user.' });
+      }
+
+      moderatorService.getAllLecturers(res);
     },
 
     addCommentToCourse: (req, res) => {

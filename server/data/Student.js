@@ -13,8 +13,8 @@ let studentSchema = userSchema.mongooseExtend({
     requiredCourses: [Course],
     specialty: String,
     marks: {
-      type: CourseMark,
-      default: {}
+      type: [ CourseMark ],
+      default: []
     },
     homeworks: [Homework],
     currentCreditsCount: {

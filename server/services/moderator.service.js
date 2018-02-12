@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const Student = mongoose.model('Student');
 const Lecturer = mongoose.model('Lecturer');
 const Course = mongoose.model('Course');
+const CourseMark = mongoose.model('CourseMark');
+const StudentMark = mongoose.model('StudentMark');
 
 const moderatorService = (utils) => {
   return {
@@ -28,7 +30,8 @@ const moderatorService = (utils) => {
           creditsToAchieve: 240,
           currentCourseInUniversity: student.currentCourseInUniversity ?
           student.currentCourseInUniversity : 1,
-          homeworks: []
+          homeworks: [],
+          marks: []
       };
 
       return Student.create(reqStudent);
@@ -69,6 +72,30 @@ const moderatorService = (utils) => {
       };
 
       return Course.create(reqCourse);
+    },
+
+    createCourseMark(courseName, mark) {
+      const courseMark = {
+        courseName: courseName,
+        mark: mark
+      };
+
+      CourseMark.create(courseMark)
+         .then((cm) => {
+           return cm;
+         });
+    },
+
+    createStudentMark(studentName, mark) {
+      const studentMark = {
+        studentName: studentName,
+        mark: mark
+      };
+
+      StudentMark.create(studentMark)
+         .then((sm) => {
+           return sm;
+         });
     },
 
     getAllStudents(res) {
@@ -148,6 +175,33 @@ const moderatorService = (utils) => {
           });
     },
 
+    getAllLecturers(res) {
+      return Lecturer.find({})
+          .sort('username')
+          .then((lecturers) => {
+            let lecturerToReturn;
+
+            lecturers = lecturers.map((lecturer) => {
+              lecturerToReturn = {
+                id: lecturer._id,
+                username: lecturer.username,
+                firstName: lecturer.firstName,
+                lastName: lecturer.lastName,
+                email: lecturer.email,
+                profilePictureUrl: lecturer.profilePictureUrl === globalConstants.DEFAULT_PROFILE_PICTURE ?
+                globalConstants.DEFAULT_PROFILE_PICTURE :
+                lecturer.profilePictureUrl,
+                requiredCourses: lecturer.requiredCourses,
+                optionalCourses: lecturer.optionalCourses
+              };
+
+              return lecturerToReturn;
+            });
+
+            return res.send(lecturers);
+          });
+    },
+
     getStudent(studentId, res) {
       let student;
       Student.findById(studentId, function(err, s) {
@@ -159,6 +213,19 @@ const moderatorService = (utils) => {
       });
 
       return student;
+    },
+
+    getLecturer(lecturerId, res) {
+      let lecturer;
+      Lecturer.findById(lecturerId, function(err, l) {
+        if(err) {
+          return res.status(400).send({ success: false, err });
+        }
+
+        lecturer = l;
+      });
+
+      return lecturer;
     },
 
     getCourse(courseId, res) {
@@ -211,6 +278,68 @@ const moderatorService = (utils) => {
                });
         });
       };
+    },
+
+    addLecturerToCourse(courseId, lecturerId, res) {
+      const lecturer = getLecturer(lecturerId, res);
+      const course = getCourse(courseId, res);
+
+      if(course.isRequired) {
+        Course.update({ '_id': courseId },
+           { $push: {'lecturers': lecturer }}, function(err, raw) {
+             if(err) {
+               return res.status(400).send({ success: false, err });
+             }
+
+            Lecturer.update({ '_id': lecturerId },
+               { $push: {'requiredCourses': course }}, function(err, raw) {
+                 if(err) {
+                   return res.status(400).send({ success: false, err });
+                 }
+
+                 return res.status(200).send({ success: true, message: 'Course updated.' });
+               });
+        });
+      } else {
+        Course.update({ '_id': courseId },
+           { $push: {'lecturers': lecturer }}, function(err, raw) {
+             if(err) {
+               return res.status(400).send({ success: false, err });
+             }
+
+            Lecturer.update({ '_id': lecturerId },
+               { $push: {'optionalCourses': course }}, function(err, raw) {
+                 if(err) {
+                   return res.status(400).send({ success: false, err });
+                 }
+
+                 return res.status(200).send({ success: true, message: 'Course updated.' });
+               });
+        });
+      };
+    },
+
+    addMarkToStudentForCourse(courseId, studentId, mark, res) {
+      const course = getCourse(courseId, res);
+      const student = getStudent(studentId, res);
+      const courseMark = createCourseMark(course.name, mark);
+      const studentMark = createStudentMark(student.username, mark);
+
+      Course.update({ '_id': courseId },
+        { $push: { 'marks': studentMark }}, function(err, raw) {
+          if(err) {
+            return res.status(400).send({ success: false, err });
+          }
+
+         Student.update({ '_id': studentId },
+            { $push: {'marks': courseMark }}, function(err, raw) {
+              if(err) {
+                return res.status(400).send({ success: false, err });
+              }
+
+              return res.status(200).send({ success: true, message: 'Mark of student added.' });
+            });
+        });
     },
 
     addCommentToCourse(courseId, comment, res) {
