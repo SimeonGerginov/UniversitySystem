@@ -19,5 +19,15 @@ module.exports = {
     }
 
     return false;
+  },
+
+  isStudent: (user) => {
+    const roles = user.roles;
+
+    if(roles.includes(globalConstants.STUDENT_ROLE)) {
+      return true;
+    }
+
+    return false;
   }
 };

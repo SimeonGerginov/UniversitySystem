@@ -150,21 +150,7 @@ const moderatorController = ({ moderatorService }) => {
       }
 
       moderatorService.getAllLecturers(res);
-    },
-
-    addCommentToCourse: (req, res) => {
-      const moderator = req.user;
-      const isModerator = controllerHelpers.isModerator(moderator);
-
-      if (!isModerator) {
-        return res.status(400).json({ success: false, message: 'Unauthorized user.' });
-      }
-
-      const courseId = req.parama.courseId;
-      const comment = req.body;
-
-      moderatorService.addCommentToCourse(courseId, comment, res);
-    },
+    }
   }
 }
 

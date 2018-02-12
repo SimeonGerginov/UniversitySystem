@@ -23,8 +23,6 @@ const attachRoutes = (app, {moderatorController}) => {
           auth.isInRole(globalConstants.MODERATOR_ROLE), moderatorController.addMarkToStudentForCourse);
   app.put('/api/moderator/courses/:courseId/lecturers/:lecturerId', passport.authenticate('jwt'),
           auth.isInRole(globalConstants.MODERATOR_ROLE), moderatorController.addLecturerToCourse);
-  app.put('/api/moderator/:courseId', passport.authenticate('jwt'),
-          auth.isInRole(globalConstants.MODERATOR_ROLE), moderatorController.addCommentToCourse);
 };
 
 module.exports = attachRoutes;
