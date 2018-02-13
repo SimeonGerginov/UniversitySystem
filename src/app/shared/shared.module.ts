@@ -20,6 +20,7 @@ import { FullNamePipe } from './pipes/full-name.pipe';
 import { ModeratorService } from './services/moderator.service';
 import { StudentDetailComponent } from './components/student-detail/student-detail.component';
 import { ModeratorGuardService } from './guards/moderator-guard.service';
+import { LecturerDetailComponent } from './components/lecturer-detail/lecturer-detail.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,7 @@ import { ModeratorGuardService } from './guards/moderator-guard.service';
     AngularFontAwesomeModule,
     ReactiveFormsModule
   ],
-  declarations: [NavigationComponent, FullNamePipe, StudentDetailComponent],
+  declarations: [NavigationComponent, FullNamePipe, StudentDetailComponent, LecturerDetailComponent],
   exports: [
     HttpModule,
     NavigationComponent,
@@ -38,7 +39,8 @@ import { ModeratorGuardService } from './guards/moderator-guard.service';
     FormsModule,
     ReactiveFormsModule,
     FullNamePipe,
-    StudentDetailComponent
+    StudentDetailComponent,
+    LecturerDetailComponent
   ],
   providers: [
     CookieService,
