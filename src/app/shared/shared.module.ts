@@ -19,6 +19,7 @@ import { AdminGuardService } from './guards/admin-guard.service';
 import { FullNamePipe } from './pipes/full-name.pipe';
 import { ModeratorService } from './services/moderator.service';
 import { StudentDetailComponent } from './components/student-detail/student-detail.component';
+import { ModeratorGuardService } from './guards/moderator-guard.service';
 
 @NgModule({
   imports: [
@@ -48,6 +49,7 @@ import { StudentDetailComponent } from './components/student-detail/student-deta
     AuthGuardService,
     LogoutGuardService,
     AdminGuardService,
+    ModeratorGuardService,
     FileUploaderService,
     AdminService,
     ModeratorService
