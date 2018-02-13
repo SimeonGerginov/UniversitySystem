@@ -8,6 +8,7 @@ import { AddStudentComponent } from './add-student/add-student.component';
 import { AllStudentsComponent } from './all-students/all-students.component';
 import { AddLecturerComponent } from './add-lecturer/add-lecturer.component';
 import { AllLecturersComponent } from './all-lecturers/all-lecturers.component';
+import { AddCourseComponent } from './add-course/add-course.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { AllLecturersComponent } from './all-lecturers/all-lecturers.component';
     ModeratorRoutingModule,
     NgxPaginationModule
   ],
-  declarations: [AddStudentComponent, AllStudentsComponent, AddLecturerComponent, AllLecturersComponent]
+  declarations: [AddStudentComponent, AllStudentsComponent, AddLecturerComponent, AllLecturersComponent, AddCourseComponent]
 })
 export class ModeratorModule { }

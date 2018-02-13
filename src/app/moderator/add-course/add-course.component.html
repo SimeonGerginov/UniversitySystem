@@ -1,0 +1,137 @@
+<main>
+  <div class="container py-3">
+      <div class="row">
+          <div class="col-md-6 col-lg-4 mx-auto">
+              <div class="card card-body">
+                  <form class="form-horizontal"
+                      (ngSubmit)='onCourseCreationSubmit()'
+                      [formGroup]="courseForm" >
+                      <div class="form-group"
+                          [ngClass]="{'error': courseForm.controls['name'].errors }">
+
+                          <div class="input-group">
+                              <span class="input-group-addon">
+                                <i class="fa fa-user fa" aria-hidden="true"></i>
+                             </span>
+                             <input class="form-control"
+                                      type="text"
+                                      placeholder="name (required)"
+                                      formControlName="name" />
+                          </div>
+
+                          <div class="col-md-10">
+                              <span
+                                 *ngIf="(courseForm.controls['name'].errors &&
+                                        (courseForm.controls['name'].dirty  ||
+                                         courseForm.controls['name'].touched)) ||
+                                         courseForm.controls['name'].errors && mouseover">
+                                     Please enter valid name
+                              </span>
+                         </div>
+                      </div>
+
+                      <div class="form-group"
+                          [ngClass]="{'error': courseForm.controls['credits'].errors }">
+
+                          <div class="input-group">
+                              <span class="input-group-addon">
+                                <i class="fa fa-user fa" aria-hidden="true"></i>
+                             </span>
+                             <input class="form-control"
+                                      type="number"
+                                      placeholder="Credits (required)"
+                                      formControlName="credits" />
+                          </div>
+
+                          <div class="col-md-10">
+                              <span
+                                 *ngIf="(courseForm.controls['credits'].errors &&
+                                        (courseForm.controls['credits'].dirty  ||
+                                        courseForm.controls['credits'].touched)) ||
+                                        courseForm.controls['credits'].errors && mouseover">
+                                     Please enter valid course credits
+                              </span>
+                         </div>
+                      </div>
+
+                      <div class="form-group"
+                          [ngClass]="{'error': courseForm.controls['maxPlacesInCourse'].errors }">
+
+                          <div class="input-group">
+                              <span class="input-group-addon">
+                                <i class="fa fa-user fa" aria-hidden="true"></i>
+                             </span>
+                             <input class="form-control"
+                                      type="number"
+                                      placeholder="Max places in course (required)"
+                                      formControlName="maxPlacesInCourse" />
+                          </div>
+
+                          <div class="col-md-10">
+                              <span
+                                 *ngIf="(courseForm.controls['maxPlacesInCourse'].errors &&
+                                        (courseForm.controls['maxPlacesInCourse'].dirty  ||
+                                        courseForm.controls['maxPlacesInCourse'].touched)) ||
+                                        courseForm.controls['maxPlacesInCourse'].errors && mouseover">
+                                     Please enter valid max places in course
+                              </span>
+                         </div>
+                      </div>
+
+                      <div class="form-group"
+                          [ngClass]="{'error': courseForm.controls['availablePlacesInCourse'].errors }">
+
+                          <div class="input-group">
+                              <span class="input-group-addon">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                             </span>
+                             <input class="form-control"
+                                      type="number"
+                                      placeholder="available Places In Course (required)"
+                                      formControlName="availablePlacesInCourse" />
+                          </div>
+
+                          <div class="col-md-10">
+                              <span
+                                 *ngIf="(courseForm.controls['availablePlacesInCourse'].errors &&
+                                        (courseForm.controls['availablePlacesInCourse'].dirty  ||
+                                        courseForm.controls['availablePlacesInCourse'].touched)) ||
+                                        courseForm.controls['availablePlacesInCourse'].errors && mouseover">
+                                     Please enter valid available Places In Course
+                              </span>
+                         </div>
+                      </div>
+
+                      <div class="form-group"
+                          [ngClass]="{'error': courseForm.controls['isRequired'].errors }">
+
+                          <div class="input-group">
+                              <span class="input-group-addon">
+                                <i class="fa fa-lock fa-lg" aria-hidden="true"></i>
+                             </span>
+                             <input class="form-control"
+                                      type="checkbox"
+                                      placeholder="isRequired (required)"
+                                      formControlName="isRequired" />
+                          </div>
+
+                          <div class="col-md-10">
+                              <span
+                                 *ngIf="(courseForm.controls['isRequired'].errors &&
+                                        (courseForm.controls['isRequired'].dirty  ||
+                                        courseForm.controls['isRequired'].touched)) ||
+                                        courseForm.controls['isRequired'].errors && mouseover">
+                                     Please enter valid isRequired
+                              </span>
+                         </div>
+                      </div>
+
+                      <input
+                         class="btn btn-lg btn-primary btn-block"
+                        [disabled]="!courseForm.valid" value="Create" type="submit">
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</main>
