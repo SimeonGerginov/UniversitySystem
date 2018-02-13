@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Routes, RouterModule, CanActivate } from '@angular/router';
 
 import { AddModeratorComponent } from './add-moderator/add-moderator.component';

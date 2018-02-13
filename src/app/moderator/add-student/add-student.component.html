@@ -1,0 +1,185 @@
+<main>
+  <div class="container py-3">
+      <div class="row">
+          <div class="col-md-6 col-lg-4 mx-auto">
+              <div class="card card-body">
+                  <form class="form-horizontal"
+                      (ngSubmit)='onStudentCreationSubmit()'
+                      [formGroup]="studentForm" >
+                      <div class="form-group"
+                          [ngClass]="{'error': studentForm.controls['username'].errors }">
+
+                          <div class="input-group">
+                              <span class="input-group-addon">
+                                <i class="fa fa-user fa" aria-hidden="true"></i>
+                             </span>
+                             <input class="form-control"
+                                      type="text"
+                                      placeholder="Username (required)"
+                                      formControlName="username" />
+                          </div>
+
+                          <div class="col-md-10">
+                              <span
+                                 *ngIf="(studentForm.controls['username'].errors &&
+                                        (studentForm.controls['username'].dirty  ||
+                                         studentForm.controls['username'].touched)) ||
+                                         studentForm.controls['username'].errors && mouseover">
+                                     Please enter valid username
+                              </span>
+                         </div>
+                      </div>
+
+                      <div class="form-group"
+                          [ngClass]="{'error': studentForm.controls['firstName'].errors }">
+
+                          <div class="input-group">
+                              <span class="input-group-addon">
+                                <i class="fa fa-user fa" aria-hidden="true"></i>
+                             </span>
+                             <input class="form-control"
+                                      type="text"
+                                      placeholder="First Name (required)"
+                                      formControlName="firstName" />
+                          </div>
+
+                          <div class="col-md-10">
+                              <span
+                                 *ngIf="(studentForm.controls['firstName'].errors &&
+                                        (studentForm.controls['firstName'].dirty  ||
+                                        studentForm.controls['firstName'].touched)) ||
+                                        studentForm.controls['firstName'].errors && mouseover">
+                                     Please enter valid first name
+                              </span>
+                         </div>
+                      </div>
+
+                      <div class="form-group"
+                          [ngClass]="{'error': studentForm.controls['lastName'].errors }">
+
+                          <div class="input-group">
+                              <span class="input-group-addon">
+                                <i class="fa fa-user fa" aria-hidden="true"></i>
+                             </span>
+                             <input class="form-control"
+                                      type="text"
+                                      placeholder="Last Name (required)"
+                                      formControlName="lastName" />
+                          </div>
+
+                          <div class="col-md-10">
+                              <span
+                                 *ngIf="(studentForm.controls['lastName'].errors &&
+                                        (studentForm.controls['lastName'].dirty  ||
+                                        studentForm.controls['lastName'].touched)) ||
+                                        studentForm.controls['lastName'].errors && mouseover">
+                                     Please enter valid last name
+                              </span>
+                         </div>
+                      </div>
+
+                      <div class="form-group"
+                          [ngClass]="{'error': studentForm.controls['email'].errors }">
+
+                          <div class="input-group">
+                              <span class="input-group-addon">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                             </span>
+                             <input class="form-control"
+                                      type="text"
+                                      placeholder="Email (required)"
+                                      formControlName="email" />
+                          </div>
+
+                          <div class="col-md-10">
+                              <span
+                                 *ngIf="(studentForm.controls['email'].errors &&
+                                        (studentForm.controls['email'].dirty  ||
+                                        studentForm.controls['email'].touched)) ||
+                                        studentForm.controls['email'].errors && mouseover">
+                                     Please enter valid email
+                              </span>
+                         </div>
+                      </div>
+
+                      <div class="form-group"
+                          [ngClass]="{'error': studentForm.controls['password'].errors }">
+
+                          <div class="input-group">
+                              <span class="input-group-addon">
+                                <i class="fa fa-lock fa-lg" aria-hidden="true"></i>
+                             </span>
+                             <input class="form-control"
+                                      type="text"
+                                      placeholder="Password (required)"
+                                      formControlName="password" />
+                          </div>
+
+                          <div class="col-md-10">
+                              <span
+                                 *ngIf="(studentForm.controls['password'].errors &&
+                                        (studentForm.controls['password'].dirty  ||
+                                        studentForm.controls['password'].touched)) ||
+                                        studentForm.controls['password'].errors && mouseover">
+                                     Please enter valid password
+                              </span>
+                         </div>
+                      </div>
+
+                      <div class="form-group"
+                          [ngClass]="{'error': studentForm.controls['specialty'].errors }">
+
+                          <div class="input-group">
+                              <span class="input-group-addon">
+                                <i class="fa fa-lock fa-lg" aria-hidden="true"></i>
+                             </span>
+                             <input class="form-control"
+                                      type="text"
+                                      placeholder="specialty (required)"
+                                      formControlName="specialty" />
+                          </div>
+
+                          <div class="col-md-10">
+                              <span
+                                 *ngIf="(studentForm.controls['specialty'].errors &&
+                                        (studentForm.controls['specialty'].dirty  ||
+                                        studentForm.controls['specialty'].touched)) ||
+                                        studentForm.controls['specialty'].errors && mouseover">
+                                     Please enter valid specialty
+                              </span>
+                         </div>
+                      </div>
+
+                      <div class="form-group"
+                          [ngClass]="{'error': studentForm.controls['currentCourseInUniversity'].errors }">
+
+                          <div class="input-group">
+                              <span class="input-group-addon">
+                                <i class="fa fa-lock fa-lg" aria-hidden="true"></i>
+                             </span>
+                             <input class="form-control"
+                                      type="text"
+                                      placeholder="currentCourseInUniversity (required)"
+                                      formControlName="currentCourseInUniversity" />
+                          </div>
+
+                          <div class="col-md-10">
+                              <span
+                                 *ngIf="(studentForm.controls['currentCourseInUniversity'].errors &&
+                                        (studentForm.controls['currentCourseInUniversity'].dirty  ||
+                                        studentForm.controls['currentCourseInUniversity'].touched)) ||
+                                        studentForm.controls['currentCourseInUniversity'].errors && mouseover">
+                                     Please enter valid course in university
+                              </span>
+                         </div>
+                      </div>
+
+                      <input
+                         class="btn btn-lg btn-primary btn-block"
+                        [disabled]="!studentForm.valid" value="Create" type="submit">
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</main>

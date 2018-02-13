@@ -17,6 +17,7 @@ import { FileUploaderService } from './services/file-uploader.service';
 import { AdminService } from './services/admin.service';
 import { AdminGuardService } from './guards/admin-guard.service';
 import { FullNamePipe } from './pipes/full-name.pipe';
+import { ModeratorService } from './services/moderator.service';
 
 @NgModule({
   imports: [
@@ -46,7 +47,8 @@ import { FullNamePipe } from './pipes/full-name.pipe';
     LogoutGuardService,
     AdminGuardService,
     FileUploaderService,
-    AdminService
+    AdminService,
+    ModeratorService
   ]
 })
 export class SharedModule { }
