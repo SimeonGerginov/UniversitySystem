@@ -21,6 +21,7 @@ import { ModeratorService } from './services/moderator.service';
 import { StudentDetailComponent } from './components/student-detail/student-detail.component';
 import { ModeratorGuardService } from './guards/moderator-guard.service';
 import { LecturerDetailComponent } from './components/lecturer-detail/lecturer-detail.component';
+import { CourseDetailComponent } from './components/course-detail/course-detail.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,7 @@ import { LecturerDetailComponent } from './components/lecturer-detail/lecturer-d
     AngularFontAwesomeModule,
     ReactiveFormsModule
   ],
-  declarations: [NavigationComponent, FullNamePipe, StudentDetailComponent, LecturerDetailComponent],
+  declarations: [NavigationComponent, FullNamePipe, StudentDetailComponent, LecturerDetailComponent, CourseDetailComponent],
   exports: [
     HttpModule,
     NavigationComponent,
@@ -40,7 +41,8 @@ import { LecturerDetailComponent } from './components/lecturer-detail/lecturer-d
     ReactiveFormsModule,
     FullNamePipe,
     StudentDetailComponent,
-    LecturerDetailComponent
+    LecturerDetailComponent,
+    CourseDetailComponent
   ],
   providers: [
     CookieService,
