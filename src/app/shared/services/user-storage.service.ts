@@ -7,6 +7,7 @@ const TOKEN_COOKIE_NAME = 'auth-token';
 const PROFILE_PICTURE_COOKIE_NAME = 'profile-pic';
 const USER_ROLE = 'user-role';
 const ADMIN_ROLE = 'Admin';
+const MODERATOR_ROLE = 'Moderator';
 
 @Injectable()
 export class UserStorageService {
@@ -19,6 +20,10 @@ export class UserStorageService {
 
   isUserAdmin(): boolean {
     return this.cookieService.get(USER_ROLE) === ADMIN_ROLE;
+  }
+
+  isUserModerator(): boolean {
+    return this.cookieService.get(USER_ROLE) === MODERATOR_ROLE;
   }
 
   loginUser(username: string, authToken: string, profilePicture: string, role: string): void {
