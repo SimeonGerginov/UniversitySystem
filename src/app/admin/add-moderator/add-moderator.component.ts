@@ -50,7 +50,7 @@ export class AddModeratorComponent implements OnInit {
           const { message } = responceObject;
 
           this.notificationService.showSuccess(message);
-          this.router.navigateByUrl('/admin/moderators');
+          this.router.navigateByUrl('/admin/all');
         }, (err) => {
           const { errorMsg } = err;
 

@@ -18,6 +18,7 @@ import { AdminService } from './services/admin.service';
 import { AdminGuardService } from './guards/admin-guard.service';
 import { FullNamePipe } from './pipes/full-name.pipe';
 import { ModeratorService } from './services/moderator.service';
+import { StudentDetailComponent } from './components/student-detail/student-detail.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,7 @@ import { ModeratorService } from './services/moderator.service';
     AngularFontAwesomeModule,
     ReactiveFormsModule
   ],
-  declarations: [NavigationComponent, FullNamePipe],
+  declarations: [NavigationComponent, FullNamePipe, StudentDetailComponent],
   exports: [
     HttpModule,
     NavigationComponent,
@@ -35,7 +36,8 @@ import { ModeratorService } from './services/moderator.service';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    FullNamePipe
+    FullNamePipe,
+    StudentDetailComponent
   ],
   providers: [
     CookieService,
