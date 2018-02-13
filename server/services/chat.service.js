@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-const Chat = mongoose.model('Chat');
+const Chat = require('../data/Chat');
 
 const chatService = (utils) => {
   return {

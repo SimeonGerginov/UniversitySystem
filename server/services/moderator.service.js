@@ -1,12 +1,11 @@
 const globalConstants = require('../utils/globalConstants');
 const encryption = require('../utils/encryption');
-const mongoose = require('mongoose');
 
-const Student = mongoose.model('Student');
-const Lecturer = mongoose.model('Lecturer');
-const Course = mongoose.model('Course');
-const CourseMark = mongoose.model('CourseMark');
-const StudentMark = mongoose.model('StudentMark');
+const Student = require('../data/Student');
+const Lecturer = require('../data/Lecturer');
+const Course = require('../data/Course');
+const CourseMark = require('../data/CourseMark');
+const StudentMark = require('../data/StudentMark');
 
 const moderatorService = (utils) => {
   return {

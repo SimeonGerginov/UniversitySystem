@@ -16,6 +16,6 @@ let studentMarkSchema = new Schema({
   }
 });
 
-let studentMark = mongoose.model('StudentMark', studentMarkSchema);
+let StudentMark = mongoose.model('StudentMark', studentMarkSchema);
 
-module.exports = studentMark;
+module.exports = StudentMark;

@@ -4,13 +4,13 @@ const globalConstants = require('../utils/globalConstants');
 
 const attachRoutes = (app, {moderatorController}) => {
   app.get('/api/moderator/students', passport.authenticate('jwt'),
-          auth.isInRole(globalConstants.MODERATOR_ROLE), moderatorController.getAllStudents());
+          auth.isInRole(globalConstants.MODERATOR_ROLE), moderatorController.getAllStudents);
   app.get('/api/moderator/courses/required', passport.authenticate('jwt'),
-          auth.isInRole(globalConstants.MODERATOR_ROLE), moderatorController.getAllRequiredCourses());
+          auth.isInRole(globalConstants.MODERATOR_ROLE), moderatorController.getAllRequiredCourses);
   app.get('/api/moderator/courses/optional', passport.authenticate('jwt'),
-          auth.isInRole(globalConstants.MODERATOR_ROLE), moderatorController.getAllOptionalCourses());
+          auth.isInRole(globalConstants.MODERATOR_ROLE), moderatorController.getAllOptionalCourses);
   app.get('/api/moderator/lecturers', passport.authenticate('jwt'),
-          auth.isInRole(globalConstants.MODERATOR_ROLE), moderatorController.getAllLecturers());
+          auth.isInRole(globalConstants.MODERATOR_ROLE), moderatorController.getAllLecturers);
   app.post('/api/moderator/students', passport.authenticate('jwt'),
           auth.isInRole(globalConstants.MODERATOR_ROLE), moderatorController.createStudent);
   app.post('/api/moderator/lecturers', passport.authenticate('jwt'),

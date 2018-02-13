@@ -1,17 +1,16 @@
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
-const Student = mongoose.model('Student');
 
 let homeworkSchema = new Schema({
   name: {
     type: String,
     required: true
   },
-  students: [ Student ],
+  students: [ {} ],
   fileUrl: String
 });
 
-let courseMark = mongoose.model('CourseMark', courseMarkSchema);
+let Homework = mongoose.model('Homework', homeworkSchema);
 
-module.exports = courseMark;
+module.exports = Homework;

@@ -1,14 +1,12 @@
 const mongoose = require('mongoose');
-const mongooseExtend = require('mongoose-schema-extend');
-const userSchema = require('./User').userSchema;
-
-const Course = mongoose.model('Course');
+const extend = require('mongoose-schema-extend');
+const userSchema = require('./User').userSchema();
 
 const Schema = mongoose.Schema;
 
-let lecturerSchema = userSchema.mongooseExtend({
-    optionalCourses: [Course],
-    requiredCourses: [Course]
+let lecturerSchema = userSchema.extend({
+    optionalCourses: [ {} ],
+    requiredCourses: [ {} ]
 });
 
 let Lecturer = mongoose.model('Lecturer', lecturerSchema);

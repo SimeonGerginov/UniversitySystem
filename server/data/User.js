@@ -49,7 +49,9 @@ let User = mongoose.model('User', userSchema);
 
 module.exports = {
     User,
-    userSchema,
+    userSchema: () => {
+      return User.schema;
+    },
     seedAdminUser: () => {
         User.find({})
             .then((users) => {

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Course = mongoose.model('Course');
 const Student = mongoose.model('Student');
-const Homework = mongoose.model('Homework');
+const Homework = require('../data/Homework');
 
 const studentService = (utils) => {
   return {
@@ -45,8 +45,8 @@ const studentService = (utils) => {
       });
     },
 
-    addHomeworkToCourse(courseId, studentId, homework, res) {
-      const homework = createHomework(homework);
+    addHomeworkToCourse(courseId, studentId, hw, res) {
+      const homework = createHomework(hw);
 
       Course.update({ '_id': courseId },
             { $push: { 'homeworks': homework }}, function(err, raw) {

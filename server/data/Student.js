@@ -1,22 +1,15 @@
 const mongoose = require('mongoose');
-const mongooseExtend = require('mongoose-schema-extend');
-const userSchema = require('./User').userSchema;
-
-const Course = mongoose.model('Course');
-const CourseMark = mongoose.model('CourseMark');
-const Homework = mongoose.model('Homework');
+const extend = require('mongoose-schema-extend');
+const userSchema = require('./User').userSchema();
 
 const Schema = mongoose.Schema;
 
-let studentSchema = userSchema.mongooseExtend({
-    optionalCourses: [Course],
-    requiredCourses: [Course],
+let studentSchema = userSchema.extend({
+    optionalCourses: [ {} ],
+    requiredCourses: [ {} ],
     specialty: String,
-    marks: {
-      type: [ CourseMark ],
-      default: []
-    },
-    homeworks: [Homework],
+    marks: [ {} ],
+    homeworks: [ {} ],
     currentCreditsCount: {
         type: Number,
         default: 0

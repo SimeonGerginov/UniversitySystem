@@ -1,10 +1,5 @@
 const mongoose = require('mongoose');
 
-const Student = mongoose.model('User');
-const Lecturer = mongoose.model('Lecturer');
-const Homework = mongoose.model('Homework');
-const StudentMark = mongoose.model('StudentMark');
-
 const Schema = mongoose.Schema;
 
 let courseSchema = new Schema({
@@ -13,14 +8,11 @@ let courseSchema = new Schema({
       required: true,
       unique: true
     },
-    lecturers: [ Lecturer ],
+    lecturers: [ {} ],
     comments: [ String ],
-    students: [ Student ],
-    marks: {
-      type: [ StudentMark ],
-      default: []
-    },
-    homeworks: [ Homework ],
+    students: [ {} ],
+    marks: [ {} ],
+    homeworks: [ {} ],
     isRequired: {
       type: Boolean,
       required: true,

@@ -16,6 +16,6 @@ let courseMarkSchema = new Schema({
   }
 });
 
-let courseMark = mongoose.model('CourseMark', courseMarkSchema);
+let CourseMark = mongoose.model('CourseMark', courseMarkSchema);
 
-module.exports = courseMark;
+module.exports = CourseMark;

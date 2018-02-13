@@ -16,7 +16,7 @@ const init = (settings) => {
 
   require('../routers')(app, controllers);
 
-  require('./config/socket.config')(app, settings.port);
+  // require('./config/socket.config')(app, settings.port);
 
   app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, "../../dist/index.html"));
