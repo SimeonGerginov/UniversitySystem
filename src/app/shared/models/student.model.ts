@@ -12,4 +12,5 @@ export class Student {
   currentCourseInUniversity: number;
   creditsToAchieve: number;
   marks: [ {} ];
+  room?: string;
 }

@@ -24,6 +24,7 @@ import { LecturerDetailComponent } from './components/lecturer-detail/lecturer-d
 import { CourseDetailComponent } from './components/course-detail/course-detail.component';
 import { StudentService } from './services/student.service';
 import { ChatService } from './services/chat.service';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   imports: [
@@ -34,7 +35,7 @@ import { ChatService } from './services/chat.service';
     AngularFontAwesomeModule,
     ReactiveFormsModule
   ],
-  declarations: [NavigationComponent, FullNamePipe, StudentDetailComponent, LecturerDetailComponent, CourseDetailComponent],
+  declarations: [NavigationComponent, FullNamePipe, StudentDetailComponent, LecturerDetailComponent, CourseDetailComponent, ChatComponent],
   exports: [
     HttpModule,
     NavigationComponent,

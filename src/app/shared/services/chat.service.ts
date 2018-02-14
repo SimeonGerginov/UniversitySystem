@@ -23,9 +23,9 @@ export class ChatService {
     return headers;
   }
 
-  getAllChatsInRoom(roomId: string): Observable<Response> {
+  getAllChatsInRoom(room: string): Observable<Response> {
     const headers = this.getHeaders();
-    const GET_ALL_CHATS_IN_ROOM_URL = DOMAIN_URL + `/rooms/${roomId}`;
+    const GET_ALL_CHATS_IN_ROOM_URL = DOMAIN_URL + `/rooms/${room}`;
 
     return this.httpRequester.get(GET_ALL_CHATS_IN_ROOM_URL, headers);
   }
