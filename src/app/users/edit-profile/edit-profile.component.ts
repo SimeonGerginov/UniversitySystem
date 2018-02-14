@@ -10,14 +10,16 @@ import { UsersService } from '../../shared/services/users.service';
 import { NotificationService } from '../../shared/services/notification.service';
 import { FileUploaderService } from '../../shared/services/file-uploader.service';
 
+const DEFAULT_SERVER_PATH = 'http://localhost:3000';
+
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent implements OnInit, AfterContentInit, OnDestroy {
-  public user: User;
   private subscriptions: Subscription[];
+  public user: User;
 
   constructor(private router: Router,
               private userStorageService: UserStorageService,
@@ -33,6 +35,7 @@ export class EditProfileComponent implements OnInit, AfterContentInit, OnDestroy
     const subscription = this.userService.getLoggedUserInfo()
        .map((r) => r.json())
        .subscribe((response: any) => {
+         console.log(response.user.profilePictureUrl);
          this.user = response.user;
        }, (err) => {
          this.notificationService.showError(err);
@@ -64,7 +67,7 @@ export class EditProfileComponent implements OnInit, AfterContentInit, OnDestroy
        .map((r) => r.json())
        .subscribe((response: any) => {
          const { filesUrls } = response;
-         this.user.profilePictureUrl = filesUrls[0];
+         this.user.profilePictureUrl = DEFAULT_SERVER_PATH + filesUrls[0];
          this.notificationService.showInfo('Click on save changes in order to save your work.');
        }, (err) => {
          this.notificationService.showError(err);

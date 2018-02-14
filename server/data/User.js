@@ -70,7 +70,7 @@ module.exports = {
                     salt: salt,
                     hashedPass: hashedPass,
                     roles: ['Admin'],
-                    profilePictureUrl: ''
+                    profilePictureUrl: globalConstants.DEFAULT_PROFILE_PICTURE
                 });
             })
     }

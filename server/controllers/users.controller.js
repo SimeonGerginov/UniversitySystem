@@ -68,10 +68,14 @@ const usersController = ({ userService, moderatorService }) => {
       const userToUpdate = req.body;
       const loggedUser = req.user;
 
-      if(loggedUser.email !== userToUpdate.email) {
-        return res.status(400).send({ success: false, message: 'Can not edit user' });
+      if(loggedUser.roles[0] === 'Student') {
+        const studentToUpdate = userToUpdate
+        moderatorService.updateStudent(studentToUpdate, res);
       }
 
+      if(loggedUser.email !== userToUpdate.email) {
+        return res.status(400).send({ success: false, message: 'Can not edit user.' });
+      }
       return userService.updateUser(userToUpdate, res);
     },
 

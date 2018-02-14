@@ -1,10 +1,9 @@
-<div class="container">
-    <main>
+<main>
         <section class="row-section">
             <div class="container">
                 <div class="row">
                     <h1 class="text-center">
-                        <i class="fa fa-user fa-2x" aria-hidden="true"></i> Users
+                        <i class="fa fa-user fa-2x" aria-hidden="true"></i> Students
                     </h1>
                 </div>
                 <div class="col-md-10 offset-md-1 row-block">
@@ -13,7 +12,7 @@
                           itemsPerPage: pageSize,
                           currentPage: currentPageNumber
                         }">
-                        <app-user-detail [user]="user"></app-user-detail>
+                        <app-user-detail [student]="user"></app-user-detail>
                         </li>
                     </ul>
 
@@ -23,5 +22,4 @@
                 </div>
             </div>
         </section>
-   </main>
-</div>
+</main>

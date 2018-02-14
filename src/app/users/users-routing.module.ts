@@ -6,7 +6,7 @@ import { LogoutGuardService } from '../shared/guards/logout-guard.service';
 import { UsersAllComponent } from './users-all/users-all.component';
 
 const routes: Routes = [
-  { path: 'edit', component: EditProfileComponent, canActivate: [LogoutGuardService] },
+  { path: 'edit', component: EditProfileComponent, canActivate: [ LogoutGuardService ] },
   { path: 'all', component: UsersAllComponent }
 ];
 

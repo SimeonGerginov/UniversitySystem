@@ -1,10 +1,11 @@
 <div class="media">
     <div class="media-left align-self-center">
-        <img class="rounded-circle" src="{{user.profilePictureUrl}}">
+        <img class="rounded-circle" src="{{student.profilePictureUrl}}">
     </div>
     <div class="media-body">
-        <h4>{{user.username}}</h4>
-        <p>{{user.firstName}}</p>
-        <p>{{user.lastName}}</p>
+        <p class="text-center">Username: {{student.username}}</p>
+        <p class="text-center"> Full name: {{student | fullName }}</p>
+        <p class="text-center">Specialty: {{student.specialty}}</p>
+        <p class="text-center">Current course: {{student.currentCourseInUniversity}}</p>
     </div>
 </div>

@@ -250,6 +250,15 @@ const moderatorService = (utils) => {
       return course;
     },
 
+    updateStudent(studentToUpdate, res) {
+      return Student.findOneAndUpdate({ email: studentToUpdate.email }, studentToUpdate,
+        function (err, student) {
+          if(err) {
+             return res.status(400).send({ success: false, err });
+          }
+      });
+    },
+
     addStudentToCourse(courseId, studentId, res) {
       const student = getStudent(studentId, res);
       const course = getCourse(courseId, res);

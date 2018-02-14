@@ -2,6 +2,7 @@ const encryption = require('../utils/encryption');
 const globalConstants = require('../utils/globalConstants');
 
 const User = require('mongoose').model('User');
+const Student = require('mongoose').model('Student');
 
 const userService = (utils) => {
   return {
@@ -39,15 +40,14 @@ const userService = (utils) => {
         firstName: reqUser.firstName,
         lastName: reqUser.lastName,
         email: reqUser.email,
-        profilePictureUrl: globalConstants.SERVER_PATH + reqUser.profilePictureUrl
+        profilePictureUrl: reqUser.profilePictureUrl
       };
 
       return user;
     },
 
     getAll(res) {
-      const role = globalConstants.STUDENT_ROLE;
-      return User.find({ 'roles': role }, function (err, users) {
+      return Student.find({}, function (err, users) {
         if(err) {
           return res.status(400).send({ success: false, err });
         }
@@ -60,7 +60,9 @@ const userService = (utils) => {
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
-            profilePictureUrl: globalConstants.SERVER_PATH + user.profilePictureUrl
+            profilePictureUrl: user.profilePictureUrl,
+            specialty: user.specialty,
+            currentCourseInUniversity: user.currentCourseInUniversity
           };
 
           return userToReturn;
@@ -71,7 +73,7 @@ const userService = (utils) => {
     },
 
     updateUser(userToUpdate, res) {
-      return User.findOneAndUpdate({ email: userToUpdate.email }, userToUpdate, function (err, place) {
+      return User.findOneAndUpdate({ email: userToUpdate.email }, userToUpdate, function (err, user) {
         if(err) {
           return res.status(400).send({ success: false, err });
         }

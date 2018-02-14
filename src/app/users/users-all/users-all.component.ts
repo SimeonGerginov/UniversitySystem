@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import 'rxjs/add/operator/map';
 
 import { UsersService } from '../../shared/services/users.service';
-import { User } from '../../shared/models/user.model';
 import { NotificationService } from '../../shared/services/notification.service';
+import { Student } from '../../shared/models/student.model';
 
 const PAGE_SIZE = 5;
 const DEFAULT_PAGE_NUMBER = 1;
@@ -14,7 +14,7 @@ const DEFAULT_PAGE_NUMBER = 1;
   styleUrls: ['./users-all.component.css']
 })
 export class UsersAllComponent implements OnInit {
-  public users: User[];
+  public users: Student[];
   public pageSize: number;
   public currentPageNumber: number;
 

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { User } from '../../shared/models/user.model';
+
+import { Student } from '../../shared/models/student.model';
 
 @Component({
   selector: 'app-user-detail',
@@ -8,7 +9,7 @@ import { User } from '../../shared/models/user.model';
 })
 export class UserDetailComponent {
   @Input()
-  public user: User;
+  public student: Student;
 
   constructor() { }
 }
