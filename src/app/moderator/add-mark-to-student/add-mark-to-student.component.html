@@ -1,0 +1,10 @@
+<div class="container">
+    <h5>Add mark to student</h5>
+    Enter the mark of the student :  <input [(ngModel)]="markValue"/>
+    <br>
+    <button [disabled]="!markValue"
+             class="btn btn-primary"
+             type="submit" (click)="onAddMark()">
+             Save Changes
+    </button>
+</div>

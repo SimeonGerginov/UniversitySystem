@@ -9,5 +9,13 @@
              class="btn btn-lg btn-warning btn-link" value="Add Student" type="submit">
       <input [routerLink]="['/moderator/lecturers', course.id]"
              class="btn btn-lg btn-warning btn-link" value="Add Lecturer" type="submit">
+
+      <ul>
+        <li *ngFor="let student of course.students">
+            <p>Username of the student: {{student.username}}</p>
+            <input [routerLink]="['/moderator/courses', course.id, student.id]"
+             class="btn btn-lg btn-warning btn-link" value="Add mark for the student" type="submit">
+        </li>
+      </ul>
   </div>
 </div>
