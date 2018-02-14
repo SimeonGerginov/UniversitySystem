@@ -13,7 +13,7 @@ const studentController = ({ studentService }) => {
       const courseId = req.parama.courseId;
       const comment = req.body;
 
-      studentService.addCommentToCourse(courseId, comment, res);
+      studentService.addCommentToCourse(courseId, student, comment, res);
     },
 
     addHomeworkToCourse: (req, res) => {

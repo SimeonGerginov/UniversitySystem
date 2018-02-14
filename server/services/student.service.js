@@ -32,8 +32,11 @@ const studentService = (utils) => {
       return course;
     },
 
-    addCommentToCourse(courseId, comment, res) {
+    addCommentToCourse(courseId, student, comment, res) {
       const course = getCourse(courseId, res);
+
+      comment.authorPictureUrl = student.profilePictureUrl;
+      comment.auhtor = student.username;
 
       Course.update({ '_id': courseId },
            { $push: { 'comments': comment }}, function(err, raw) {

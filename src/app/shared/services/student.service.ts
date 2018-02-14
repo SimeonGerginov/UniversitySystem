@@ -30,7 +30,7 @@ export class StudentService {
     return this.httpRequester.post(ADD_HOMEWORK_TO_COURSE_URL, homework, headers);
   }
 
-  addCommentToCourse(courseId: string, comment: string): Observable<Response> {
+  addCommentToCourse(courseId: string, comment: any): Observable<Response> {
     const headers = this.getHeaders();
     const ADD_COMMENT_TO_COURSE_URL = DOMAIN_URL + `${courseId}`;
 

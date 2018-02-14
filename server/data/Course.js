@@ -9,7 +9,7 @@ let courseSchema = new Schema({
       unique: true
     },
     lecturers: [ {} ],
-    comments: [ String ],
+    comments: [ {} ],
     students: [ {} ],
     marks: [ {} ],
     homeworks: [ {} ],

@@ -9,4 +9,5 @@ export class Course {
   isRequired: boolean;
   homeworks: [{}];
   marks: [{}];
+  comments: [{}];
 }

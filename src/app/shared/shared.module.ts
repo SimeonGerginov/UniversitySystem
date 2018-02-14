@@ -27,6 +27,7 @@ import { StudentService } from './services/student.service';
 @NgModule({
   imports: [
     HttpModule,
+    FormsModule,
     RouterModule,
     CommonModule,
     AngularFontAwesomeModule,
