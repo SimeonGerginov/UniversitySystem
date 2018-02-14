@@ -9,6 +9,8 @@ import { AllLecturersComponent } from './all-lecturers/all-lecturers.component';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { AllRequiredCoursesComponent } from './all-required-courses/all-required-courses.component';
 import { AllOptionalCoursesComponent } from './all-optional-courses/all-optional-courses.component';
+import { AddStudentToCourseComponent } from './add-student-to-course/add-student-to-course.component';
+import { AddLecturerToCourseComponent } from './add-lecturer-to-course/add-lecturer-to-course.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'students/all', pathMatch: 'full' },
@@ -18,7 +20,9 @@ const routes: Routes = [
   { path: 'lecturers/all', component: AllLecturersComponent, canActivate: [ ModeratorGuardService ]},
   { path: 'courses/add', component: AddCourseComponent, canActivate: [ ModeratorGuardService ]},
   { path: 'courses/required', component: AllRequiredCoursesComponent, canActivate: [ ModeratorGuardService ]},
-  { path: 'courses/optional', component: AllOptionalCoursesComponent, canActivate: [ ModeratorGuardService ]}
+  { path: 'courses/optional', component: AllOptionalCoursesComponent, canActivate: [ ModeratorGuardService ]},
+  { path: 'students/:courseId', component: AddStudentToCourseComponent, canActivate: [ ModeratorGuardService ]},
+  { path: 'lectureres/:courseId', component: AddLecturerToCourseComponent, canActivate: [ ModeratorGuardService ]}
 ];
 
 @NgModule({

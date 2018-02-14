@@ -4,5 +4,10 @@
       <br>
       <p class="text-center">Credits: {{course.credits}}</p>
       <p class="text-center">Max places in course: {{course.maxPlacesInCourse}}</p>
+
+      <input [routerLink]="['/moderator/students', course.id]"
+             class="btn btn-lg btn-warning btn-link" value="Add Student" type="submit">
+      <input [routerLink]="['/moderator/lecturers', course.id]"
+             class="btn btn-lg btn-warning btn-link" value="Add Lecturer" type="submit">
   </div>
 </div>

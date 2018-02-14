@@ -11,6 +11,8 @@ import { AllLecturersComponent } from './all-lecturers/all-lecturers.component';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { AllRequiredCoursesComponent } from './all-required-courses/all-required-courses.component';
 import { AllOptionalCoursesComponent } from './all-optional-courses/all-optional-courses.component';
+import { AddStudentToCourseComponent } from './add-student-to-course/add-student-to-course.component';
+import { AddLecturerToCourseComponent } from './add-lecturer-to-course/add-lecturer-to-course.component';
 
 @NgModule({
   imports: [
@@ -19,6 +21,8 @@ import { AllOptionalCoursesComponent } from './all-optional-courses/all-optional
     ModeratorRoutingModule,
     NgxPaginationModule
   ],
-  declarations: [AddStudentComponent, AllStudentsComponent, AddLecturerComponent, AllLecturersComponent, AddCourseComponent, AllRequiredCoursesComponent, AllOptionalCoursesComponent]
+  declarations: [AddStudentComponent, AllStudentsComponent, AddLecturerComponent,
+    AllLecturersComponent, AddCourseComponent, AllRequiredCoursesComponent,
+    AllOptionalCoursesComponent, AddStudentToCourseComponent, AddLecturerToCourseComponent]
 })
 export class ModeratorModule { }
