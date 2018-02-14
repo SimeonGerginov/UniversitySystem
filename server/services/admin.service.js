@@ -74,12 +74,12 @@ const adminService = (utils) => {
     },
 
     updateMod(moderator, res) {
-      return User.findOneAndUpdate({ email: moderator.email }, moderator, function (err, res) {
+      return User.findOneAndUpdate({ email: moderator.email }, moderator, function (err, result) {
         if(err) {
-         return res.status(400).send({ success: false, err });
+         return res.status(400).json({ success: false, err });
         }
 
-        return res.status(204).send({ success: true, updatedModerator: moderator });
+        return res.status(204).json({ success: true, updatedModerator: moderator });
       });
     },
 

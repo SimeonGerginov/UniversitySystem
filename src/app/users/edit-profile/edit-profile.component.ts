@@ -35,7 +35,6 @@ export class EditProfileComponent implements OnInit, AfterContentInit, OnDestroy
     const subscription = this.userService.getLoggedUserInfo()
        .map((r) => r.json())
        .subscribe((response: any) => {
-         console.log(response.user.profilePictureUrl);
          this.user = response.user;
        }, (err) => {
          this.notificationService.showError(err);

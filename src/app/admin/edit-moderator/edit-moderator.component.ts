@@ -9,6 +9,8 @@ import { AdminService } from '../../shared/services/admin.service';
 import { NotificationService } from '../../shared/services/notification.service';
 import { FileUploaderService } from '../../shared/services/file-uploader.service';
 
+const DEFAULT_SERVER_PATH = 'http://localhost:3000';
+
 @Component({
   selector: 'app-edit-moderator',
   templateUrl: './edit-moderator.component.html',
@@ -65,7 +67,7 @@ export class EditModeratorComponent implements OnInit, AfterContentInit, OnDestr
        .map((r) => r.json())
        .subscribe((response: any) => {
          const { filesUrls } = response;
-         this.moderator.profilePictureUrl = filesUrls[0];
+         this.moderator.profilePictureUrl = DEFAULT_SERVER_PATH + filesUrls[0];
          this.notificationService.showInfo('Click on save changes in order to save your work.');
        }, (err) => {
          this.notificationService.showError(err);

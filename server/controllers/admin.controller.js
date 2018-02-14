@@ -61,6 +61,7 @@ const adminController = ({ adminService }) => {
         return res.status(400).json({ success: false, message: 'User is not moderator.' });
       }
 
+      console.log(res);
       adminService.updateMod(moderator, res);
     },
 

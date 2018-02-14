@@ -9,10 +9,10 @@ import { DeleteModeratorComponent } from './delete-moderator/delete-moderator.co
 
 const routes: Routes = [
   { path: '', redirectTo: 'all', pathMatch: 'full' },
-  { path: 'add', component: AddModeratorComponent, canActivate: [AdminGuardService] },
-  { path: 'all', component: AllModeratorsComponent, canActivate: [AdminGuardService] },
-  { path: 'edit/:id', component: EditModeratorComponent, canActivate: [AdminGuardService] },
-  { path: 'delete/:id', component: DeleteModeratorComponent, canActivate: [AdminGuardService] }
+  { path: 'add', component: AddModeratorComponent, canActivate: [ AdminGuardService ] },
+  { path: 'all', component: AllModeratorsComponent, canActivate: [ AdminGuardService ] },
+  { path: 'edit/:id', component: EditModeratorComponent, canActivate: [ AdminGuardService ] },
+  { path: 'delete/:id', component: DeleteModeratorComponent, canActivate: [ AdminGuardService ] }
 ];
 
 @NgModule({

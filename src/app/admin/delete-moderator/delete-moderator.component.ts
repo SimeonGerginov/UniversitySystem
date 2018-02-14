@@ -7,8 +7,7 @@ import { AdminService } from '../../shared/services/admin.service';
 
 @Component({
   selector: 'app-delete-moderator',
-  templateUrl: './delete-moderator.component.html',
-  styleUrls: ['./delete-moderator.component.css']
+  template: ''
 })
 export class DeleteModeratorComponent implements OnInit {
   private id: string;
