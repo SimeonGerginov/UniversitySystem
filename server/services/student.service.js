@@ -45,7 +45,7 @@ const studentService = (utils) => {
       });
     },
 
-    addHomeworkToCourse(courseId, studentId, hw, res) {
+    addHomeworkToCourse(courseId, studentUsername, hw, res) {
       const homework = createHomework(hw);
 
       Course.update({ '_id': courseId },
@@ -54,7 +54,7 @@ const studentService = (utils) => {
                 return res.status(400).send({ success: false, err });
               }
 
-              Student.update({ '_id': studentId },
+              Student.update({ 'username': studentUsername },
                   { $push: { 'homeworks': homework }}, function(err, raw) {
                     if(err) {
                       return res.status(400).send({ success: false, err });

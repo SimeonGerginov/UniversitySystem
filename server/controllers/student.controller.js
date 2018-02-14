@@ -25,10 +25,10 @@ const studentController = ({ studentService }) => {
       }
 
       const courseId = req.params.courseId;
-      const studentId = req.params.studentId;
+      const studentUsername = req.params.studentUsername;
       const homework = req.body;
 
-      studentService.addHomeworkToCourse(courseId, studentId, homework, res);
+      studentService.addHomeworkToCourse(courseId, studentUsername, homework, res);
     }
   }
 }

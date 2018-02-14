@@ -23,9 +23,9 @@ export class StudentService {
     return headers;
   }
 
-  addHomeworkToCourse(courseId: string, studentId: string, homework: any): Observable<Response> {
+  addHomeworkToCourse(courseId: string, studentUsername: string, homework: any): Observable<Response> {
     const headers = this.getHeaders();
-    const ADD_HOMEWORK_TO_COURSE_URL = DOMAIN_URL + `${studentId}/${courseId}`;
+    const ADD_HOMEWORK_TO_COURSE_URL = DOMAIN_URL + `${studentUsername}/${courseId}`;
 
     return this.httpRequester.post(ADD_HOMEWORK_TO_COURSE_URL, homework, headers);
   }

@@ -31,6 +31,11 @@ const routes: Routes = [
   {
     path: 'moderator',
     loadChildren: './moderator/moderator.module#ModeratorModule'
+  },
+
+  {
+    path: 'student',
+    loadChildren: './student/student.module#StudentModule'
   }
 ];
 

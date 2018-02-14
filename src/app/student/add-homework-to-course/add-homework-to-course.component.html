@@ -1,0 +1,35 @@
+<main>
+  <div class="containter">
+      <form class="row" (ngSubmit)="onSubmit()" #addHomeworkForm=ngForm>
+          <div class="col-md-4 col-sm-6 col-xs-12">
+              <div class="text-center">
+                  <h6>Upload a homework</h6>
+                  <input (change)="onChange(homeworkInput.files)"
+                  type="file" #homeworkInput class="text-center center-block well well-sm">
+              </div>
+
+              <div>
+                  <div class="form-group">
+                      <label class="col-lg-3 control-label">Homework name</label>
+                      <div class="col-lg-8">
+                          <input required class="form-control"
+                                 [(ngModel)]="homework.name" name="name"
+                                 value="{{this.homework.name}}" type="text" name="name">
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label class="col-md-3 control-label"></label>
+                      <div class="col-md-8">
+                          <button [disabled]="!addHomeworkForm.valid"
+                                  class="btn btn-primary"
+                                  type="submit">Add Homework</button>
+                          <span></span>
+                          <input class="btn btn-default" value="Cancel" type="reset">
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </form>
+  </div>
+</main>
