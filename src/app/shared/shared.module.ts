@@ -22,6 +22,7 @@ import { StudentDetailComponent } from './components/student-detail/student-deta
 import { ModeratorGuardService } from './guards/moderator-guard.service';
 import { LecturerDetailComponent } from './components/lecturer-detail/lecturer-detail.component';
 import { CourseDetailComponent } from './components/course-detail/course-detail.component';
+import { StudentService } from './services/student.service';
 
 @NgModule({
   imports: [
@@ -56,7 +57,8 @@ import { CourseDetailComponent } from './components/course-detail/course-detail.
     ModeratorGuardService,
     FileUploaderService,
     AdminService,
-    ModeratorService
+    ModeratorService,
+    StudentService
   ]
 })
 export class SharedModule { }
