@@ -19,13 +19,13 @@
                                         formControlName="email" />
                             </div>
 
-                            <div class="col-md-10">
-                                <span
-                                   *ngIf="(userForm.controls['email'].errors &&
-                                          (userForm.controls['email'].dirty  ||
-                                          userForm.controls['email'].touched)) ||
-                                          userForm.controls['email'].errors && mouseover">
-                                       Please enter valid email
+                            <div class="col-md-10" *ngIf="userForm.controls['email'].errors &&
+                                         userForm.controls['email'].dirty">
+                                <span *ngIf="userForm.controls['email'].hasError('required')">
+                                       Email is required
+                                </span>
+                                <span *ngIf="userForm.controls['email'].hasError('pattern')">
+                                       Invalid Email
                                 </span>
                            </div>
                         </div>
@@ -43,15 +43,15 @@
                                         formControlName="password" />
                             </div>
 
-                            <div class="col-md-10">
-                                <span
-                                   *ngIf="(userForm.controls['password'].errors &&
-                                          (userForm.controls['password'].dirty  ||
-                                          userForm.controls['password'].touched)) ||
-                                          userForm.controls['password'].errors && mouseover">
-                                       Please enter valid password
+                            <div class="col-md-10" *ngIf="userForm.controls['password'].errors &&
+                                         userForm.controls['password'].dirty">
+                                <span *ngIf="userForm.controls['password'].hasError('required')">
+                                       Password is required
                                 </span>
-                           </div>
+                                <span *ngIf="userForm.controls['password'].hasError('pattern')">
+                                       Invalid Password
+                                </span>
+                            </div>
                         </div>
 
                         <input

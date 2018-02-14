@@ -8,22 +8,23 @@ const usersController = ({ userService, moderatorService }) => {
           return res.status(400).json({errorMessage: 'You are already logged in.'})
        }
 
-       moderatorService.createStud(req.body)
+       moderatorService.createStudent(req.body, res)
           .then(() => {
           })
           .catch((err) => {
-            console.log(err);
+            return res.status(400).json({ errorMessage: err });
           });
 
        userService.createUser(req.body)
           .then((user) => {
-              return res.send({
+              return res.status(200).send({
                 success: true,
                 message: `user ${user.username} created`
               });
           })
           .catch((err) => {
-              return res.status(400).json({ errorMsg: err });
+              console.log(err);
+              return res.status(400).json({ success: false, errorMessage: err });
           });
     },
 
@@ -54,7 +55,6 @@ const usersController = ({ userService, moderatorService }) => {
               });
           })
           .catch((err) => {
-            console.log(err);
             res.status(400).send(({ success: false, message: 'Invalid Credentials' }))
           });
     },

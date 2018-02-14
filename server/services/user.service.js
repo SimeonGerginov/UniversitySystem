@@ -5,7 +5,17 @@ const User = require('mongoose').model('User');
 
 const userService = (utils) => {
   return {
-    createUser(reqUser) {
+    createUser(reqUser, res) {
+      User.findOne({ username: reqUser.username }, function(err, user) {
+        if(err) {
+          return res.status(400).send({ success: false, errorMessage: err });
+        }
+
+        if(user) {
+          return res.status(400).send({ success: false, errorMessage: 'User already exists.' });
+        }
+      });
+
       let salt = encryption.generateSalt();
       let hashedPass = encryption.generateHashedPassword(salt, reqUser.password);
 

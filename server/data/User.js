@@ -60,10 +60,10 @@ module.exports = {
                 }
 
                 let salt = encryption.generateSalt();
-                let hashedPass = encryption.generateHashedPassword(salt, '123456abc');
+                let hashedPass = encryption.generateHashedPassword(salt, '123456ab');
 
                 User.create({
-                    username: 'Admin Name',
+                    username: 'Administrator',
                     firstName: 'AdminFirstName',
                     lastName: 'AdminLastName',
                     email: 'admin1@gmail.com',

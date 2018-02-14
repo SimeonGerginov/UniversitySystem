@@ -6,8 +6,7 @@ import { NotificationService } from '../../shared/services/notification.service'
 
 @Component({
   selector: 'app-logout',
-  templateUrl: './logout.component.html',
-  styleUrls: ['./logout.component.css']
+  template: ''
 })
 export class LogoutComponent implements OnInit {
 

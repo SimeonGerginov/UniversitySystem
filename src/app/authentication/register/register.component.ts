@@ -6,8 +6,11 @@ import 'rxjs/add/operator/map';
 import { UsersService } from '../../shared/services/users.service';
 import { NotificationService } from '../../shared/services/notification.service';
 
-const EMAIL_PATTERN = '^[a-z0-9]+[_a-z0-9\.-]*[a-z0-9]+@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$';
-const PASSWORD_PATTERN = '^[a-zA-Z0-9 ]{8,30}$';
+const USERNAME_PATTERN = /^[a-zA-Z0-9 ]{3,30}$/;
+const FIRSTNAME_PATTERN = /^[a-zA-Z0-9 ]{3,18}$/;
+const LASTNAME_PATTERN = /^[a-zA-Z0-9 ]{3,18}$/;
+const EMAIL_PATTERN = /^[a-z0-9]+[_a-z0-9\.-]*[a-z0-9]+@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+const PASSWORD_PATTERN = /^[a-zA-Z0-9 ]{8,30}$/;
 
 @Component({
   selector: 'app-register',
@@ -28,14 +31,11 @@ export class RegisterComponent implements OnInit {
   private createForm(): void {
     this.userForm = new FormGroup({
       username: new FormControl('', [ Validators.required,
-                       Validators.minLength(3),
-                       Validators.maxLength(30)]),
+                       Validators.pattern(USERNAME_PATTERN)]),
       firstName: new FormControl('', [ Validators.required,
-                        Validators.minLength(3),
-                        Validators.maxLength(18)]),
+                        Validators.pattern(FIRSTNAME_PATTERN)]),
       lastName: new FormControl('', [ Validators.required,
-                       Validators.minLength(3),
-                       Validators.maxLength(18)]),
+                       Validators.pattern(LASTNAME_PATTERN)]),
       email: new FormControl('', [ Validators.required, Validators.pattern(EMAIL_PATTERN)]),
       password: new FormControl('', [ Validators.required, Validators.pattern(PASSWORD_PATTERN)])
     });
@@ -50,11 +50,12 @@ export class RegisterComponent implements OnInit {
           const { message } = responceObject;
 
           this.notificationService.showSuccess(message);
-          this.router.navigateByUrl('/login');
+          this.router.navigateByUrl('/auth/login');
         }, (err) => {
-          const { errorMsg } = err;
+          const { errorMessage } = err;
 
-          this.notificationService.showError(errorMsg);
+          this.notificationService.showError(errorMessage);
+          this.router.navigateByUrl('/home');
         });
   }
 

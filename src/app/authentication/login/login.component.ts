@@ -8,8 +8,8 @@ import { UsersService } from '../../shared/services/users.service';
 import { NotificationService } from '../../shared/services/notification.service';
 import { UserStorageService } from '../../shared/services/user-storage.service';
 
-const EMAIL_PATTERN = '^[a-z0-9]+[_a-z0-9\.-]*[a-z0-9]+@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$';
-const PASSWORD_PATTERN = '^[a-zA-Z0-9 ]{8,30}$';
+const EMAIL_PATTERN = /^[a-z0-9]+[_a-z0-9\.-]*[a-z0-9]+@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+const PASSWORD_PATTERN = /^[a-zA-Z0-9 ]{8,30}$/;
 
 @Component({
   selector: 'app-login',
@@ -43,9 +43,8 @@ export class LoginComponent implements OnInit {
 
     this.userService.loginUser(this.user)
         .map((r) => r.json())
-        .subscribe((responce: any) => {
-          const { username, token, profilePicture, message, role } = responce;
-          console.log(role);
+        .subscribe((response: any) => {
+          const { username, token, profilePicture, message, role } = response;
 
           this.userStorageService.loginUser(username, token, profilePicture, role);
           this.notificationService.showSuccess(message);

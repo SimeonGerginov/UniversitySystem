@@ -9,7 +9,17 @@ const StudentMark = require('../data/StudentMark');
 
 const moderatorService = (utils) => {
   return {
-    createStudent(student) {
+    createStudent(student, res) {
+      Student.findOne({ username: student.username }, function(err, student) {
+        if(err) {
+          return res.status(400).send({ success: false, errorMessage: err })
+        }
+
+        if(student) {
+          return res.status(400).send({ success: false, errorMessage: 'The user already exists.' });
+        }
+      });
+
       let salt = encryption.generateSalt();
       let hashedPass = encryption.generateHashedPassword(salt, student.password);
 
