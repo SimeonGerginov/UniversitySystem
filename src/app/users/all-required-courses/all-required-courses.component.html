@@ -1,0 +1,26 @@
+<main>
+  <div class="container mt40">
+      <section class="row">
+          <article class="col-xs-12 col-sm-8 col-md-6 col-lg-4"
+          *ngFor="let course of courses | paginate: {
+            itemsPerPage: pageSize,
+            currentPage: currentPageNumber
+            }" >
+              <div class="card panel panel-default">
+                  <div class="panel-body">
+                      <a [routerLink]="['user/courses/', course._id]"></a>
+                  </div>
+                  <div class="panel-footer card-block">
+                      <h5><a href="#" class="a" title="Image">{{course.name}}</a></h5>
+                      <p class="a">
+                          <i class="fa fa-money left" aria-hidden="true"> {{course.credits}}</i>
+                      </p>
+                  </div>
+              </div>
+              <pagination-controls
+                 (pageChange)="currentPageNumber = $event">
+              </pagination-controls>
+          </article>
+      </section>
+  </div>
+</main>

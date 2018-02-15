@@ -1,5 +1,6 @@
 const encryption = require('../utils/encryption');
 const globalConstants = require('../utils/globalConstants');
+const controllerHelpers = require('../utils/controllerHelpers');
 
 const usersController = ({ userService, moderatorService }) => {
   return {
@@ -62,6 +63,28 @@ const usersController = ({ userService, moderatorService }) => {
     getProfileInfo(req, res) {
       const user = userService.getUserProfileInfo(req.user);
       return res.json({ success: true, user });
+    },
+
+    getAllRequiredCoursesOfStudent(req, res) {
+      const user = req.user;
+      const isStudent = controllerHelpers.isStudent(user);
+
+      if (!isStudent) {
+        return res.status(400).json({ success: false, message: 'Unauthorized user.' });
+      }
+
+      userService.getAllRequiredCoursesOfStudent(user, res);
+    },
+
+    getAllOptionalCoursesOfStudent(req, res) {
+      const user = req.user;
+      const isStudent = controllerHelpers.isStudent(user);
+
+      if (!isStudent) {
+        return res.status(400).json({ success: false, message: 'Unauthorized user.' });
+      }
+
+      userService.getAllOptionalCoursesOfStudent(user, res);
     },
 
     updateUserInfo(req, res) {

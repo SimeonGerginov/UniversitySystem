@@ -1,6 +1,7 @@
 const globalConstants = require("../utils/globalConstants");
 const encryption = require("../utils/encryption");
 
+const User = require('mongoose').model('User');
 const Student = require("../data/Student");
 const Lecturer = require("../data/Lecturer");
 const Course = require("../data/Course");
@@ -16,9 +17,7 @@ const moderatorService = utils => {
         }
 
         if (student) {
-          return res
-            .status(400)
-            .send({ success: false, errorMessage: "The user already exists." });
+          return res.status(400).send({ success: false, errorMessage: "The user already exists." });
         }
       });
 
@@ -51,6 +50,18 @@ const moderatorService = utils => {
         marks: []
       };
 
+      const reqUser = {
+        username: student.username,
+        firstName: student.firstName,
+        lastName: student.lastName,
+        email: student.email,
+        salt: salt,
+        hashedPass: hashedPass,
+        roles: [globalConstants.STUDENT_ROLE],
+        profilePictureUrl: globalConstants.DEFAULT_PROFILE_PICTURE
+      }
+
+      User.create(reqUser);
       return Student.create(reqStudent);
     },
 

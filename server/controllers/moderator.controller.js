@@ -11,7 +11,7 @@ const moderatorController = ({ moderatorService }) => {
         return res.status(400).json({ success: false, message: 'Unauthorized user.' });
       }
 
-      moderatorService.createStudent(student)
+      moderatorService.createStudent(student, res)
           .then((student) => {
               return res.send({
                 success: true,

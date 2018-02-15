@@ -72,6 +72,24 @@ const userService = (utils) => {
       });
     },
 
+    getAllRequiredCoursesOfStudent(reqStudent, res) {
+      return Student.findOne({ email: reqStudent.email })
+             .then((student) => {
+               let courses = student.requiredCourses;
+
+               return res.status(200).send({ success: true, courses });
+             });
+    },
+
+    getAllOptionalCoursesOfStudent(reqStudent, res) {
+      return Student.findOne({ email: reqStudent.email })
+             .then((student) => {
+               let courses = student.optionalCourses;
+
+               return res.status(200).send({ success: true, courses });
+             });
+    },
+
     updateUser(userToUpdate, res) {
       return User.findOneAndUpdate({ email: userToUpdate.email }, userToUpdate, function (err, user) {
         if(err) {

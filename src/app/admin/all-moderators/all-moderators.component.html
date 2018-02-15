@@ -1,25 +1,27 @@
-<main>
-      <section class="row-section">
-          <div class="container">
-              <div class="row">
-                  <h1 class="text-center">
-                      <i class="fa fa-user fa-2x" aria-hidden="true"></i> Moderators
-                  </h1>
-              </div>
-              <div class="col-md-10 offset-md-1 row-block">
-                  <ul>
-                      <li *ngFor="let moderator of moderators | paginate: {
-                        itemsPerPage: pageSize,
-                        currentPage: currentPageNumber
-                      }">
-                      <app-moderator-details [moderator]="moderator"></app-moderator-details>
-                      </li>
-                  </ul>
+<div class="container">
+    <main>
+        <section class="row-section">
+            <div class="container">
+                <div class="row">
+                    <h1 class="text-center">
+                        <i class="fa fa-user fa-2x" aria-hidden="true"></i> Moderators
+                    </h1>
+                </div>
+                <div class="col-md-10 offset-md-1 row-block">
+                    <ul>
+                        <li *ngFor="let moderator of moderators | paginate: {
+                          itemsPerPage: pageSize,
+                          currentPage: currentPageNumber
+                        }">
+                        <app-moderator-details [moderator]="moderator"></app-moderator-details>
+                        </li>
+                    </ul>
 
-                  <pagination-controls
-                      (pageChange)="currentPageNumber = $event">
-                  </pagination-controls>
-              </div>
-          </div>
-      </section>
-</main>
+                    <pagination-controls
+                        (pageChange)="currentPageNumber = $event">
+                    </pagination-controls>
+                </div>
+            </div>
+        </section>
+  </main>
+</div>

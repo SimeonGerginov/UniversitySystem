@@ -6,10 +6,7 @@
   margin-left: 450px;
 }
 
-main {
-  margin-top: 1%;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+div .container {
   background-image: url("../../../assets/imgs/solar-energy-2157212_1280.jpg");
   background-repeat: no-repeat;
   background-position: center center;
