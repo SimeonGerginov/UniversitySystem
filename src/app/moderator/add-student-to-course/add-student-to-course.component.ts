@@ -46,7 +46,7 @@ export class AddStudentToCourseComponent implements OnInit {
         .subscribe((res) => {
           const { message } = res;
           this.notificationService.showInfo(message);
-          this.router.navigateByUrl('/moderator/courses');
+          this.router.navigateByUrl('/moderator/students/all');
         }, (err) => {
           this.notificationService.showError(err);
         });

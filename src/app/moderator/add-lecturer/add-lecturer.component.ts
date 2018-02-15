@@ -50,7 +50,7 @@ export class AddLecturerComponent implements OnInit {
           const { message } = responseObject;
 
           this.notificationService.showSuccess(message);
-          this.router.navigateByUrl('/moderator/lecturers');
+          this.router.navigateByUrl('/moderator/lecturers/all');
         }, (err) => {
           this.notificationService.showError(err);
         });

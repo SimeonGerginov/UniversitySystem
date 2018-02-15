@@ -47,7 +47,7 @@ export class AddCourseComponent implements OnInit {
           const { message } = responseObject;
 
           this.notificationService.showSuccess(message);
-          this.router.navigateByUrl('/moderator/courses');
+          this.router.navigateByUrl('/moderator');
         }, (err) => {
           this.notificationService.showError(err);
         });

@@ -27,6 +27,7 @@ export class AllRequiredCoursesComponent implements OnInit {
     this.moderatorService.getAllRequiredCourses()
         .map((r) => r.json())
         .subscribe((responseCourses) => {
+          console.log(responseCourses);
           this.courses = responseCourses;
           this.notificationService.showInfo('Required Courses have been delivered.');
         }, (err) => {

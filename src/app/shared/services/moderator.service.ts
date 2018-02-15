@@ -78,8 +78,15 @@ export class ModeratorService {
     return this.httpRequester.post(CREATE_COURSE__URL, course, headers);
   }
 
+  getCourse(courseId: string): Observable<Response> {
+    const headers = this.getHeaders();
+    const GET_COURSE_URL = DOMAIN_URL + `courses/${courseId}`;
+
+    return this.httpRequester.get(GET_COURSE_URL, headers);
+  }
+
   addStudentToCourse(courseId: string, studentId: string): Observable<Response> {
-    const headers = this.getHeaders;
+    const headers = this.getHeaders();
     const ADD_STUDENT_TO_COURSE_URL = DOMAIN_URL + `courses/${courseId}/students/${studentId}`;
 
     return this.httpRequester.put(ADD_STUDENT_TO_COURSE_URL, {}, headers);

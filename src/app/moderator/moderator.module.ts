@@ -14,6 +14,7 @@ import { AllOptionalCoursesComponent } from './all-optional-courses/all-optional
 import { AddStudentToCourseComponent } from './add-student-to-course/add-student-to-course.component';
 import { AddLecturerToCourseComponent } from './add-lecturer-to-course/add-lecturer-to-course.component';
 import { AddMarkToStudentComponent } from './add-mark-to-student/add-mark-to-student.component';
+import { CourseDetailsComponent } from './course-details/course-details.component';
 
 @NgModule({
   imports: [
@@ -24,6 +25,6 @@ import { AddMarkToStudentComponent } from './add-mark-to-student/add-mark-to-stu
   ],
   declarations: [AddStudentComponent, AllStudentsComponent, AddLecturerComponent,
     AllLecturersComponent, AddCourseComponent, AllRequiredCoursesComponent,
-    AllOptionalCoursesComponent, AddStudentToCourseComponent, AddLecturerToCourseComponent, AddMarkToStudentComponent]
+    AllOptionalCoursesComponent, AddStudentToCourseComponent, AddLecturerToCourseComponent, AddMarkToStudentComponent, CourseDetailsComponent]
 })
 export class ModeratorModule { }
