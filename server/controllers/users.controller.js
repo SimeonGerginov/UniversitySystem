@@ -65,6 +65,12 @@ const usersController = ({ userService, moderatorService }) => {
       return res.json({ success: true, user });
     },
 
+    getCourse(req, res) {
+      const courseId = req.params.courseId;
+
+      userService.findCourse(courseId, res);
+    },
+
     getAllRequiredCoursesOfStudent(req, res) {
       const user = req.user;
       const isStudent = controllerHelpers.isStudent(user);
@@ -72,6 +78,8 @@ const usersController = ({ userService, moderatorService }) => {
       if (!isStudent) {
         return res.status(400).json({ success: false, message: 'Unauthorized user.' });
       }
+
+      console.log('in controller');
 
       userService.getAllRequiredCoursesOfStudent(user, res);
     },

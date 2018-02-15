@@ -31,6 +31,7 @@ export class AllRequiredCoursesComponent implements OnInit {
          this.courses = courses;
          this.notificationService.showInfo('All courses are delivered.');
        }, (err) => {
+         console.log(err);
          this.notificationService.showError(err);
        });
   }

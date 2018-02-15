@@ -11,8 +11,8 @@ const LOGIN_USER_URL = DOMAIN_URL + '/login';
 const USER_INFO_URL = DOMAIN_URL + '/users/profile';
 const UPDATE_USER_URL = DOMAIN_URL + '/users/update';
 const ALL_USERS_URL = DOMAIN_URL + '/users';
-const ALL_REQUIRED_COURSES_URL = DOMAIN_URL + '/courses/required';
-const ALL_OPTIONAL_COURSES_URL = DOMAIN_URL + '/courses/optional';
+const ALL_REQUIRED_COURSES_URL = DOMAIN_URL + '/required/courses';
+const ALL_OPTIONAL_COURSES_URL = DOMAIN_URL + '/optional/courses';
 
 @Injectable()
 export class UsersService {
@@ -32,6 +32,13 @@ export class UsersService {
     };
 
     return headers;
+  }
+
+  getCourse(courseId: string): Observable<Response> {
+    const headers = this.getHeaders();
+    const COURSE_URL = DOMAIN_URL +  `/courses/${courseId}`;
+
+    return this.httpRequester.get(COURSE_URL, headers);
   }
 
   getAllRequiredCourses(): Observable<Response> {

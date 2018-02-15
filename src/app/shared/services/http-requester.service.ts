@@ -32,6 +32,9 @@ export class HttpRequesterService {
     const body = JSON.stringify(data);
     const requestOptions = this.getRequestOptions(requestHeaders);
 
+    console.log(body);
+    console.log(data);
+
     return this.http.put(url, body, requestOptions);
   }
 

@@ -6,6 +6,7 @@ import { UsersAllComponent } from './users-all/users-all.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { AllRequiredCoursesComponent } from './all-required-courses/all-required-courses.component';
+import { CourseInfoComponent } from './course-info/course-info.component';
 
 @NgModule({
   imports: [
@@ -13,6 +14,6 @@ import { AllRequiredCoursesComponent } from './all-required-courses/all-required
     UsersRoutingModule,
     NgxPaginationModule
   ],
-  declarations: [EditProfileComponent, UsersAllComponent, UserDetailComponent, AllRequiredCoursesComponent]
+  declarations: [EditProfileComponent, UsersAllComponent, UserDetailComponent, AllRequiredCoursesComponent, CourseInfoComponent]
 })
 export class UsersModule { }

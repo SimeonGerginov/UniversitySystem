@@ -3,6 +3,7 @@ const globalConstants = require('../utils/globalConstants');
 
 const User = require('mongoose').model('User');
 const Student = require('mongoose').model('Student');
+const Course = require('mongoose').model('Course');
 
 const userService = (utils) => {
   return {
@@ -102,6 +103,25 @@ const userService = (utils) => {
 
     findUserByEmail(email) {
       return User.findOne({ email: email });
+    },
+
+    findCourse(courseId, res) {
+      return Course.findOne({_id: courseId }, function (err, course) {
+        if(err) {
+          return res.status(400).send({ success: false, err });
+        }
+
+        let courseToReturn = {
+          id: course._id,
+          name: course.name,
+          students: course.students,
+          lecturers: course.lecturers,
+          comments: course.comments,
+          credits: course.credits
+        };
+
+        res.send(courseToReturn);
+      });
     },
 
     getToken(user) {
