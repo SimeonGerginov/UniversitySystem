@@ -65,19 +65,6 @@ const moderatorController = ({ moderatorService }) => {
           });
     },
 
-    getCourse: (req, res) => {
-      const moderator = req.user;
-      const isModerator = controllerHelpers.isModerator(moderator);
-
-      if (!isModerator) {
-        return res.status(400).json({ success: false, message: 'Unauthorized user.' });
-      }
-
-      const courseId = req.params.courseId;
-
-      moderatorService.getSpecificCourse(courseId, res);
-    },
-
     addStudentToCourse: (req, res) => {
       const moderator = req.user;
       const isModerator = controllerHelpers.isModerator(moderator);

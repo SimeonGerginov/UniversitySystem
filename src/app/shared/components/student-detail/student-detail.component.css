@@ -1,9 +1,10 @@
 .media {
   border: 3px solid #d5dbdd;
-  padding: 5px 20px;
+  padding: 1px 1px;
   border-radius: 5px;
   box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.04);
   background: #fff;
+  background-color: blanchedalmond;
 }
 
 .media .media-left img {
@@ -27,7 +28,7 @@
 
 .media .media-body p {
   color: royalblue;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 600;
   margin-bottom: 0;
   margin-right: 120px;

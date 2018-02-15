@@ -3,13 +3,12 @@
       <img class="rounded-circle" src="{{student.profilePictureUrl}}">
   </div>
   <div class="media-body">
-      <h4 class="text-center">Username: {{student.username}}</h4>
-      <br>
+      <h4 class="text-center">{{student.username}}</h4>
       <p class="text-center">Full name: {{student | fullName}}</p>
       <p class="text-center">Email: {{student.email}}</p>
       <p class="text-center">Specialty: {{student.specialty}}</p>
       <div>
-        <p class="text-center">Current course: {{student.currentCourseInUniversity}}</p>
+        <p class="text-center">Course: {{student.currentCourseInUniversity}}</p>
       </div>
   </div>
 </div>

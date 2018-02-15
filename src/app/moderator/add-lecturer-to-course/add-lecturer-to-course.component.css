@@ -19,3 +19,21 @@ main {
   background-size: cover;
   background-attachment: fixed;
 }
+
+main h1 {
+  color: white;
+}
+
+main h5 {
+  margin-left: 340px;
+  color: white;
+}
+
+main p {
+  margin-left: 340px;
+  color: white;
+}
+
+main button {
+  margin-left: 300px;
+}

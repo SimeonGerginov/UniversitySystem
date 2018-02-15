@@ -5,7 +5,7 @@ import { ModeratorService } from '../../shared/services/moderator.service';
 import { NotificationService } from '../../shared/services/notification.service';
 import { Lecturer } from '../../shared/models/lecturer.model';
 
-const PAGE_SIZE = 5;
+const PAGE_SIZE = 3;
 const DEFAULT_PAGE_NUMBER = 1;
 
 @Component({

@@ -46,7 +46,7 @@ export class AddLecturerToCourseComponent implements OnInit {
         .subscribe((res) => {
           const { message } = res;
           this.notificationService.showInfo(message);
-          this.router.navigateByUrl('/moderator/courses');
+          this.router.navigateByUrl('/moderator/courses/required');
         }, (err) => {
           this.notificationService.showError(err);
         });

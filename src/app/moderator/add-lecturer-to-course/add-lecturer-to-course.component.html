@@ -3,7 +3,7 @@
           <div class="container">
               <div class="row">
                   <h1 class="text-center">
-                      <i class="fa fa-user fa-2x" aria-hidden="true"></i> Students
+                      <i class="fa fa-user fa-2x" aria-hidden="true"></i> Lecturers
                   </h1>
               </div>
               <div class="col-md-10 offset-md-1 row-block">
@@ -12,10 +12,13 @@
                         itemsPerPage: pageSize,
                         currentPage: currentPageNumber
                       }">
-                      <h5>Username: {{lecturer.username}}</h5>
-                      <button type="submit" (click)="onAddLecturer(lecturer.id)">
-                        Add student to course
+                      <br>
+                      <h5>{{lecturer.username}}</h5>
+                      <p>{{lecturer | fullName}}</p>
+                      <button class="btn btn-success" type="submit" (click)="onAddLecturer(lecturer.id)">
+                        Add lecturer to course
                       </button>
+                      <br>
                       </li>
                   </ul>
 

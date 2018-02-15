@@ -12,10 +12,13 @@
                         itemsPerPage: pageSize,
                         currentPage: currentPageNumber
                       }">
-                      <h5>Username: {{student.username}}</h5>
-                      <button type="submit" (click)="onAddStudent(student.id)">
+                      <br>
+                      <h5>{{student.username}}</h5>
+                      <p>{{student | fullName}}</p>
+                      <button class="btn btn-success" type="submit" (click)="onAddStudent(student.id)">
                         Add student to course
                       </button>
+                      <br>
                       </li>
                   </ul>
 

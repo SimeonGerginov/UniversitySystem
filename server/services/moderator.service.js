@@ -239,34 +239,12 @@ const moderatorService = utils => {
       return Student.findById(studentId);
     },
 
-    getLecturer(lecturerId, res) {
-      Lecturer.findById(lecturerId, function(err, l) {
-        if (err) {
-          return res.status(400).send({ success: false, err });
-        }
-
-        return l;
-      });
+    getLecturer(lecturerId) {
+      return Lecturer.findOne({ _id: lecturerId });
     },
 
     getCourse(courseId) {
       return Course.findOne({ _id: courseId });
-    },
-
-    getSpecificCourse(courseId, res) {
-      Course.findById(courseId, function(err, course) {
-        let courseToReturn = {
-          name: course.name,
-          students: course.students,
-          lecturers: course.lecturers,
-          credits: course.credits,
-          comments: course.comments,
-          homeworks: course.homeworks,
-          marks: course.marks
-        };
-
-        return res.status(200).send({ success: true, courseToReturn });
-      })
     },
 
     updateStudent(studentToUpdate, res) {
@@ -337,59 +315,60 @@ const moderatorService = utils => {
       });
     },
 
-    addLecturerToCourse(courseId, lecturerId, res) {
-      const lecturer = getLecturer(lecturerId, res);
-      const course = getCourse(courseId, res);
-
-      if (course.isRequired) {
-        Course.update(
-          { _id: courseId },
-          { $push: { lecturers: lecturer } },
-          function(err, raw) {
-            if (err) {
-              return res.status(400).send({ success: false, err });
-            }
-
-            Lecturer.update(
-              { _id: lecturerId },
-              { $push: { requiredCourses: course } },
+    addLecturerToCourse(courseId, lecuturerId, res) {
+      this.getCourse(courseId).then(course => {
+        this.getLecturer(lecuturerId).then(lecturer => {
+          if (course.isRequired) {
+            Course.update(
+              { _id: courseId },
+              { $push: { lecturers: lecturer } },
               function(err, raw) {
                 if (err) {
                   return res.status(400).send({ success: false, err });
                 }
 
-                return res
-                  .status(200)
-                  .send({ success: true, message: "Course updated." });
+                Lecturer.update(
+                  { _id: lecuturerId },
+                  { $push: { requiredCourses: course } },
+                  function(err, raw) {
+                    if (err) {
+                      return res.status(400).send({ success: false, err });
+                    }
+
+                    return res
+                      .status(200)
+                      .send({ success: true, message: "Course updated." });
+                  }
+                );
               }
             );
-          }
-        );
-      } else {
-        Course.update(
-          { _id: courseId },
-          { $push: { lecturers: lecturer } },
-          function(err, raw) {
-            if (err) {
-              return res.status(400).send({ success: false, err });
-            }
-
-            Lecturer.update(
-              { _id: lecturerId },
-              { $push: { optionalCourses: course } },
+          } else {
+            Course.update(
+              { _id: courseId },
+              { $push: { lecturers: lecturer } },
               function(err, raw) {
                 if (err) {
                   return res.status(400).send({ success: false, err });
                 }
 
-                return res
-                  .status(200)
-                  .send({ success: true, message: "Course updated." });
+                Lecturer.update(
+                  { _id: lecturerId },
+                  { $push: { optionalCourses: course } },
+                  function(err, raw) {
+                    if (err) {
+                      return res.status(400).send({ success: false, err });
+                    }
+
+                    return res
+                      .status(200)
+                      .send({ success: true, message: "Course updated." });
+                  }
+                );
               }
             );
           }
-        );
-      }
+        });
+      });
     },
 
     addMarkToStudentForCourse(courseId, studentId, mark, res) {
