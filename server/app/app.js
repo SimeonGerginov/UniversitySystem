@@ -16,13 +16,13 @@ const init = (settings) => {
 
   require('../routers')(app, controllers);
 
-  // require('./config/socket.config')(app, settings.port);
-
   app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, "../../dist/index.html"));
   });
 
-  return Promise.resolve(app);
+  const server = require('./config/socket.config')(app);
+
+  return Promise.resolve(server);
 }
 
 module.exports = init;

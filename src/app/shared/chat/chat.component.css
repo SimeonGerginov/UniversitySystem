@@ -1,0 +1,46 @@
+.panel-footer {
+  margin-top: 200px;
+  margin-left: 200px;
+}
+
+main {
+  margin-top: 3%;
+  padding-top: 10rem;
+  padding-bottom: 32rem;
+  background-image: url("../../../assets/imgs/balloon-381334_1280.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+h1 {
+  margin-top: 300px;
+  margin-left: 180px;
+}
+
+main .row .col-md-5 {
+  margin-left: 500px;
+}
+
+
+img {
+  width: 40px;
+}
+
+div .header {
+  margin-left: 100px;
+}
+
+p {
+  size: 330px;
+  margin-left: 100px;
+  color: darkslategray;
+}
+
+div .panel-body {
+  margin-left: 100px;
+}

@@ -1,8 +1,8 @@
-const configSocket = (app, port) => {
+const configSocket = (app) => {
   const server = require('http').createServer(app);
   const io = require('socket.io')(server);
 
-  server.listen(port);
+  //server.listen(port);
 
   io.on('connection', function(socket) {
     console.log('User connected.');
@@ -16,6 +16,8 @@ const configSocket = (app, port) => {
       io.emit('new-message', { message: data });
     });
   });
+
+  return server;
 }
 
 module.exports = configSocket;

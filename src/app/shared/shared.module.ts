@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms/';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { NavigationComponent } from './navigation/navigation.component';
 import { UsersService } from './services/users.service';
@@ -33,7 +34,8 @@ import { ChatComponent } from './chat/chat.component';
     RouterModule,
     CommonModule,
     AngularFontAwesomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   declarations: [NavigationComponent, FullNamePipe, StudentDetailComponent, LecturerDetailComponent, CourseDetailComponent, ChatComponent],
   exports: [
@@ -46,7 +48,8 @@ import { ChatComponent } from './chat/chat.component';
     FullNamePipe,
     StudentDetailComponent,
     LecturerDetailComponent,
-    CourseDetailComponent
+    CourseDetailComponent,
+    ChatComponent
   ],
   providers: [
     CookieService,
