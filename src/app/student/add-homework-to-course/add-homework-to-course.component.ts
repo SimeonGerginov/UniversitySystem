@@ -9,6 +9,8 @@ import { Homework } from '../../shared/models/homework.model';
 import { StudentService } from '../../shared/services/student.service';
 import { UserStorageService } from '../../shared/services/user-storage.service';
 
+const DEFAULT_SERVER_PATH = 'http://localhost:3000';
+
 @Component({
   selector: 'app-add-homework-to-course',
   templateUrl: './add-homework-to-course.component.html',
@@ -49,9 +51,9 @@ export class AddHomeworkToCourseComponent implements OnInit {
     this.fileUploader.uploadFile(files)
        .map((r) => r.json())
        .subscribe((response: any) => {
-         const { message, filesUrls } = response;
-         this.homework.fileUrl = filesUrls[0];
-         this.notificationService.showInfo(message);
+         const { filesUrls } = response;
+         this.homework.fileUrl =  DEFAULT_SERVER_PATH + filesUrls[0];
+         this.notificationService.showInfo('Click on save changes in order to save your work.');
        }, (err) => {
          this.notificationService.showError(err);
        });

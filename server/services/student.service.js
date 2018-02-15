@@ -34,11 +34,11 @@ const studentService = utils => {
       let homeworkToCreate = {
         name: hw.name,
         students: [],
-        fileUrl: hw.fileUrl
+        fileUrl:  hw.fileUrl
       };
 
       Homework.create(homeworkToCreate).then(homework => {
-        Course.update(
+        Course.updateOne(
           { _id: courseId },
           { $push: { homeworks: homework } },
           function(err, raw) {
@@ -46,7 +46,7 @@ const studentService = utils => {
               return res.status(400).send({ success: false, err });
             }
 
-            Student.update(
+            Student.updateOne(
               { username: studentUsername },
               { $push: { homeworks: homework } },
               function(err, raw) {

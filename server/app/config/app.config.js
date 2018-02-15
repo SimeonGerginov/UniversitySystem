@@ -16,7 +16,7 @@ const configApp = (app) => {
 
     const storage = multer.diskStorage({
       filename: function (req, file, cb) {
-        if(file.mimetype === 'text/plain') {
+        if(file.mimetype === 'application/pdf') {
           cb(null, `${Date.now()}.pdf`);
         }
 
