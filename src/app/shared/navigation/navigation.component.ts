@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 
 import { UserStorageService } from '../services/user-storage.service';
 import { NotificationService } from '../services/notification.service';
-import { AdminService } from '../services/admin.service';
 
 @Component({
   selector: 'app-navigation',
@@ -11,19 +10,23 @@ import { AdminService } from '../services/admin.service';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit, DoCheck {
-  isUserLogged: boolean;
-  isUserAdmin: boolean;
-  username: string;
-  profilePictureUrl: string;
+  public isUserLogged: boolean;
+  public isUserAdmin: boolean;
+  public isUserStudent: boolean;
+  public isUserModerator: boolean;
+
+  public username: string;
+  public profilePictureUrl: string;
 
   constructor(private userStorageService: UserStorageService,
               private notificationService: NotificationService,
-              private adminService: AdminService,
               private router: Router) { }
 
   ngOnInit() {
     this.isUserLogged = this.userStorageService.isUserLoggedIn();
-    this.isUserAdmin = this.adminService.isUserAdmin();
+    this.isUserAdmin = this.userStorageService.isUserAdmin();
+    this.isUserModerator = this.userStorageService.isUserModerator();
+    this.isUserStudent = this.userStorageService.isUserStudent();
 
     if (this.isUserLogged) {
       this.username = this.userStorageService.getLoggedUserUsername();
@@ -33,11 +36,18 @@ export class NavigationComponent implements OnInit, DoCheck {
 
   ngDoCheck(): void {
     this.isUserLogged = this.userStorageService.isUserLoggedIn();
+    this.isUserAdmin = this.userStorageService.isUserAdmin();
+    this.isUserModerator = this.userStorageService.isUserModerator();
+    this.isUserStudent = this.userStorageService.isUserStudent();
     this.username = this.userStorageService.getLoggedUserUsername();
     this.profilePictureUrl = this.userStorageService.getLoggedUserProfilePicture();
   }
 
   logoutUser() {
+    this.isUserLogged = false;
+    this.isUserAdmin = false;
+    this.isUserModerator = false;
+    this.isUserStudent = false;
     this.userStorageService.logoutUser();
     this.notificationService.showSuccess('You are now logged out!');
     this.router.navigateByUrl('/home');

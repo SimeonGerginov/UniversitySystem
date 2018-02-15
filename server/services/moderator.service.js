@@ -11,7 +11,7 @@ const StudentMark = require("../data/StudentMark");
 const moderatorService = utils => {
   return {
     createStudent(student, res) {
-      Student.findOne({ username: student.username }, function(err, student) {
+      Student.findOne({ email: student.email }, function(err, student) {
         if (err) {
           return res.status(400).send({ success: false, errorMessage: err });
         }
@@ -65,7 +65,17 @@ const moderatorService = utils => {
       return Student.create(reqStudent);
     },
 
-    createLecturer(lecturer) {
+    createLecturer(lecturer, res) {
+      Lecturer.findOne({ email: lecturer.email }, function(err, lecturer) {
+        if (err) {
+          return res.status(400).send({ success: false, errorMessage: err });
+        }
+
+        if (lecturer) {
+          return res.status(400).send({ success: false, errorMessage: "The user already exists." });
+        }
+      });
+
       let salt = encryption.generateSalt();
       let hashedPass = encryption.generateHashedPassword(
         salt,
@@ -88,7 +98,17 @@ const moderatorService = utils => {
       return Lecturer.create(reqLecturer);
     },
 
-    createCourse(course) {
+    createCourse(course, res) {
+      Course.findOne({ name: course.name }, function(err, course) {
+        if (err) {
+          return res.status(400).send({ success: false, errorMessage: err });
+        }
+
+        if (course) {
+          return res.status(400).send({ success: false, errorMessage: "The course already exists." });
+        }
+      });
+
       const reqCourse = {
         name: course.name,
         lecturers: [],

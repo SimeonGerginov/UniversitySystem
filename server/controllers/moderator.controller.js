@@ -32,7 +32,7 @@ const moderatorController = ({ moderatorService }) => {
         return res.status(400).json({ success: false, message: 'Unauthorized user.' });
       }
 
-      moderatorService.createLecturer(lecturer)
+      moderatorService.createLecturer(lecturer, res)
           .then((lecturer) => {
               return res.send({
                 success: true,
@@ -53,7 +53,7 @@ const moderatorController = ({ moderatorService }) => {
         return res.status(400).json({ success: false, message: 'Unauthorized user.' });
       }
 
-      moderatorService.createCourse(course)
+      moderatorService.createCourse(course, res)
           .then((course) => {
               return res.send({
                 success: true,

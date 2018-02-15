@@ -1,20 +1,29 @@
-.panel {
-  position: relative;
-  overflow: hidden;
-  display: block;
-  border-radius: 5px !important;
-}
-
-.panel-default {
-  border-color: #ebedef !important;
-}
-
 .panel .panel-body {
-  position: relative;
-  padding: 0 !important;
-  overflow: hidden;
+  margin-left: 110px;
+}
+
+.row {
+  margin-left: 200px;
+}
+
+h5 {
+  margin-left: 110px;
+}
+
+p {
+  margin-left: 110px;
 }
 
 main {
-  margin-top: 300px;
+  margin-top: 50px;
+  padding-top: 20rem;
+  padding-bottom: 32rem;
+  background-image: url("../../../assets/imgs/balloon-381334_1280.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
 }

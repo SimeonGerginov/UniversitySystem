@@ -19,21 +19,59 @@
                 </a>
             </li>
 
-            <li *ngIf="isUserAdmin" class="nav-item">
-              <a class="nav-link" [routerLink]="[ '/admin/add'] ">
-                <i class="fa fa-user"></i>
-                <span class="nav-link-text ">
-                    Add Moderator
-                </span>
+            <li *ngIf="isUserAdmin" class="nav-item dropdown">
+              <a class="nav-link" id="navbarDropdown1" data-target="#"
+                  href="http://example.com" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <i class="fa fa-user-circle-o" aria-hidden="true"></i> Admin
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                    <li>
+                      <a class="dropdown-item" [routerLink]="['/admin/add']">Add Moderator
+                      </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" [routerLink]="[ '/admin/all'] ">All Moderators
+                        </a>
+                    </li>
+                  </ul>
               </a>
             </li>
 
-            <li *ngIf="isUserAdmin" class="nav-item">
-              <a class="nav-link" [routerLink]="[ '/admin/all'] ">
-                <i class="fa fa-user"></i>
-                <span class="nav-link-text ">
-                    List of Moderators
-                </span>
+            <li *ngIf="isUserModerator" class="nav-item dropdown">
+              <a class="nav-link" id="navbarDropdown1" data-target="#"
+                  href="http://example.com" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <i class="fa fa-user-circle-o" aria-hidden="true"></i> Moderator
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                    <li>
+                      <a class="dropdown-item" [routerLink]="['/moderator/students/add']">Add Student
+                      </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" [routerLink]="[ '/moderator/student/all'] ">All Students
+                        </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" [routerLink]="[ '/moderator/lecturers/add'] ">Add Lecturer
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" [routerLink]="[ '/moderator/lecturers/all'] ">All Lecturers
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" [routerLink]="[ '/moderator/courses/add'] ">Add Course
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" [routerLink]="[ '/moderator/courses/required'] ">Required Courses
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" [routerLink]="[ '/moderator/courses/optional'] ">Optional Courses
+                      </a>
+                    </li>
+                  </ul>
               </a>
             </li>
         </ul>

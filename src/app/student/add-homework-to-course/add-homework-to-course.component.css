@@ -1,3 +1,17 @@
 main {
   margin-top: 5%;
+  padding-top: 1rem;
+  padding-bottom: 50rem;
+  background-image: url("../../../assets/imgs/balloon-381334_1280.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.row {
+  margin-left: 800px;
 }

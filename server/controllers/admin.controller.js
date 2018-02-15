@@ -34,7 +34,7 @@ const adminController = ({ adminService }) => {
         return res.status(400).json({ success: false, message: 'Unauthorized user.' });
       }
 
-      adminService.createMod(moderator)
+      adminService.createMod(moderator, res)
           .then((moderator) => {
               return res.send({
                 success: true,
@@ -61,7 +61,6 @@ const adminController = ({ adminService }) => {
         return res.status(400).json({ success: false, message: 'User is not moderator.' });
       }
 
-      console.log(res);
       adminService.updateMod(moderator, res);
     },
 

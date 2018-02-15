@@ -1,3 +1,17 @@
+.wrapper {
+  margin-top: 100%;
+  padding-top: 1rem;
+  padding-bottom: 50rem;
+  background-image: url("../../../assets/imgs/balloon-381334_1280.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 .descr {
   color: #333;
   text-align: center;
@@ -330,27 +344,6 @@ body {
   -moz-border-radius: 0 0 4px 4px;
   border-radius: 0 0 4px 4px;
 }
-
-
-/*
-.comment-box .comment-name.by-author, .comment-box .comment-name.by-author a {color: #03658c;}
-.comment-box .comment-name.by-author:after {
-content: 'autor';
-background: #03658c;
-color: #FFF;
-font-size: 12px;
-padding: 3px 5px;
-font-weight: 700;
-margin-left: 10px;
--webkit-border-radius: 3px;
--moz-border-radius: 3px;
-border-radius: 3px;
-} */
-
-
-/** =====================
-* Responsive
-========================*/
 
 @media only screen and (max-width: 766px) {
   .comments-container {

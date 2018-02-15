@@ -8,11 +8,17 @@
             }" >
               <div class="card panel panel-default">
                   <div class="panel-body">
-                      <a [routerLink]="['/user/courses/', course._id]"> Course Details</a>
+                      Course Details
+                      <input class="btn btn-success" type="submit"
+                       [routerLink]="['/user/courses/', course._id]">
                   </div>
+                  <br>
                   <div class="panel-body">
-                    <a [routerLink]="['/student/homeworks/', course._id]"> Add Homework</a>
+                      Add Homework
+                    <input class="btn btn-success" type="submit"
+                            [routerLink]="['/student/homeworks/', course._id]">
                   </div>
+                  <br>
                   <div class="panel-footer card-block">
                       <h5><a href="#" class="a" title="Image">{{course.name}}</a></h5>
                       <p class="a">

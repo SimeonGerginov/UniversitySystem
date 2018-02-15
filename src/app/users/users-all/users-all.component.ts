@@ -5,7 +5,7 @@ import { UsersService } from '../../shared/services/users.service';
 import { NotificationService } from '../../shared/services/notification.service';
 import { Student } from '../../shared/models/student.model';
 
-const PAGE_SIZE = 5;
+const PAGE_SIZE = 2;
 const DEFAULT_PAGE_NUMBER = 1;
 
 @Component({

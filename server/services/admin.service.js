@@ -55,7 +55,17 @@ const adminService = (utils) => {
           });
     },
 
-    createMod(moderator) {
+    createMod(moderator, res) {
+      User.findOne({ email: moderator.email }, function(err, moderator) {
+        if (err) {
+          return res.status(400).send({ success: false, errorMessage: err });
+        }
+
+        if (moderator) {
+          return res.status(400).send({ success: false, errorMessage: "The user already exists." });
+        }
+      });
+
       let salt = encryption.generateSalt();
       let hashedPass = encryption.generateHashedPassword(salt, moderator.password);
 
